@@ -1,6 +1,6 @@
 from typing import Any
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 import uvicorn
 
 app: FastAPI = FastAPI()
@@ -30,6 +30,51 @@ def get_user(user_id: int) -> dict[str, Any]:
     except Exception as e:
         return {"error": str(e)}
 
+@app.post('/echo')          
+async def echo(request:Request):
+    body = await request.json()
+    return {"my_answer": body["input"],
+            "moje_meno": body["meno"]}
+
+@app.post('/scitanie')
+async def scitanie(request:Request):
+    body = await request.json()
+    return {"vysledok": body["prve_cislo"] + body["druhe_cislo"]}
+
+
+@app.post('/odcitanie')
+async def odcitanie(request:Request):
+    body = await request.json()
+    return {"vysledok": body["prve_cislo"] - body["druhe_cislo"]}
+
+@app.post('/nasobenie')
+async def nasobenie(request:Request):
+    body = await request.json()
+    return {"vysledok": body["prve_cislo"] * body["druhe_cislo"]}
+
+@app.post('/delenie')
+async def delenie(request:Request):
+    body = await request.json()
+    return {"vysledok": body["prve_cislo"] / body["druhe_cislo"]}
+
+
+@app.get('/scitanie/5/10')
+async def scitanie(request:Request):
+    body = await request.json()
+    return {"vysledok": body["prve_cislo"] + body["druhe_cislo"]}
+
+@app.post('/spojenie')
+async def spojenie(request:Request):
+    body = await request.json()
+    return {"vysledok": body["meno"] + " " + body["priezvisko"]}
+
+@app.post('/log_in ')
+async def log_in(request:Request):
+    body = await request.json()
+    if body["username"] == "admin" and body["password"] == "admin":
+        return {"message": "Login successful"}
+    else:
+        return {"message": "Invalid username or password"}
 
 if __name__ == "__main__":
     uvicorn.run(
