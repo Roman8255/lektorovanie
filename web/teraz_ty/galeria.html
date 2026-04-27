@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spider-Verse</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  /* 5-farebný gradient */
+  background: linear-gradient(135deg,
+    #ff4d4d,
+    #ff944d,
+    #ffd24d,
+    #4da6ff,
+    #6a5acd
+  );
+
+  text-align: center;
+  padding: 20px;
+}
+
+/* navigácia */
+nav {
+  margin-bottom: 30px;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* kontajner */
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* galéria */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* karta */
+.gallery-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 15px;
+  transition: 0.3s;
+}
+
+/* hover efekt */
+.gallery-card:hover {
+  transform: scale(1.05);
+}
+
+/* obrázky */
+.gallery-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* text */
+.gallery-card p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+  <a href="./">Domov</a>
+  <a href="./skola.html">Spiderman</a>
+</nav>
+
+<main class="container">
+
+<h1 style="color:white;">Spider-Verse postavy</h1>
+
+<div class="gallery">
+
+  <div class="gallery-card">
+    <img src="https://tse4.mm.bing.net/th/id/OIP.3jrHlbj54zPbqj3HDKa3QAHaKj">
+    <p>Peter Parker</p>
+  </div>
+
+  <div class="gallery-card">
+    <img src="https://clipground.com/images/miles-morales-clipart.jpg">
+    <p>Miles Morales</p>
+  </div>
+
+  <div class="gallery-card">
+    <img src="https://tse1.mm.bing.net/th/id/OIP.yv-2P0BrVYkZJKXgroY0XgHaKk">
+    <p>Gwen Stacy</p>
+  </div>
+
+  <div class="gallery-card">
+    <img src="https://images.seeklogo.com/logo-png/13/1/spider-man-2099-logo-png_seeklogo-130399.png">
+    <p>Miguel O'Hara</p>
+  </div>
+
+  <div class="gallery-card">
+    <img src="https://i.pinimg.com/originals/22/35/c7/2235c74a823f69ad012c1addfeef266a.jpg">
+    <p>Hobie Brown</p>
+  </div>
+
+  <div class="gallery-card">
+    <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/08/Spider-Noir.jpg">
+    <p>Spider-Man Noir</p>
+  </div>
+
+  <div class="gallery-card">
+    <img src="https://www.writeups.org/wp-content/uploads/Spider-Woman-Marvel-Comics-Drew-2-big.jpg">
+    <p>Jessica Drew</p>
+  </div>
+
+</div>
+
+</main>
+
+</body>
+</html>
