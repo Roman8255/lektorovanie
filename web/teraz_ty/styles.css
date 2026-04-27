@@ -17,7 +17,7 @@ body {
   background-color: white;
 }
 
-h1 {
+h3 {
   color: #1d4ed8;
 }
 
@@ -31,4 +31,10 @@ a {
 
 ul {
   padding-left: 20px;
+}
+img {
+  width: 400px;
+  height: auto;
+  border-radius: 10px;
+
 }
