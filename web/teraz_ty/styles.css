@@ -15,10 +15,11 @@ body {
   margin: 0 auto;
   padding: 40px 20px;
   background-color: white;
+  border-radius: 20px;
 }
 
 h1 {
-  color: #1d4ed8;
+  color: #44a731;
 }
 
 h2 {
@@ -31,4 +32,29 @@ a {
 
 ul {
   padding-left: 20px;
+}
+
+.farba {
+  color: crimson;
+  size: 67px;
+}
+.farba2 {
+  color:#2563eb;
+}
+
+.farba3 {
+  color: chartreuse;
+}
+
+.idk {
+  border-radius: 20px;
+}
+
+.velkost {
+  width: 500px;
+  border-radius: 20px;
+}
+.velkost2{
+  width: 350px;
+  border-radius: 20px;
 }
