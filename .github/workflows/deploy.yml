@@ -78,3 +78,23 @@ jobs:
             -e "ssh" \
             "${{ env.MAIN_SOURCE_DIR }}/" \
             "${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:${{ env.REMOTE_BASE_DIR }}/"
+
+      - name: Collect deployed student directories
+        run: |
+          ssh ${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }} \
+            "find '${{ env.REMOTE_BASE_DIR }}' -mindepth 1 -maxdepth 1 -type d -exec basename {} \\; | sort" \
+            > student_dirs.txt
+
+      - name: Render students sites page
+        run: |
+          python3 .github/scripts/render_sites_page.py \
+            --template "${{ env.MAIN_SOURCE_DIR }}/sites.html" \
+            --output "rendered-sites.html" \
+            --dirs-file "student_dirs.txt"
+
+      - name: Upload generated students sites page
+        run: |
+          rsync -avh \
+            -e "ssh" \
+            rendered-sites.html \
+            "${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:${{ env.REMOTE_BASE_DIR }}/sites.html"

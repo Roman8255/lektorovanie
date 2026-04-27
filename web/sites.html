@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Prehlad studentskych stranok nasadenych z vedlajsich branchi."
+    />
+    <title>Studentske stranky</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Hlavna navigacia">
+      <a class="site-nav-brand" href="index.html">HTML a CSS jednoducho</a>
+      <div class="site-nav-links">
+        <a href="index.html">Domov</a>
+        <a href="sites.html" aria-current="page">Studentske stranky</a>
+      </div>
+    </nav>
+
+    <header class="hero hero-compact">
+      <p class="eyebrow">Preview zoznam</p>
+      <h1>Studentske stranky</h1>
+      <p class="lead">
+        Tento zoznam sa pri deployi generuje automaticky podla priecinkov,
+        ktore su nasadene na serveri z vedlajsich branchi.
+      </p>
+    </header>
+
+    <main class="page">
+      <section class="card sites-card">
+        <div class="section-heading section-heading-single">
+          <div>
+            <p class="section-index">Live prehlad</p>
+            <h2>Dostupne podstranky</h2>
+            <p>
+              Ak pribudne nova branch a deploy vytvori novy priecinok, v tomto
+              zozname sa po nasadeni objavi dalsi odkaz.
+            </p>
+          </div>
+        </div>
+
+        <div class="site-link-grid">
+          <!-- GENERATED_LINKS_START -->
+          <article class="student-card student-card-empty">
+            <h3>Zatial bez preview stranok</h3>
+            <p>
+              Po prvom deployi z vedlajsej branche sa sem automaticky doplni
+              odkaz na novu studentsku stranku.
+            </p>
+          </article>
+          <!-- GENERATED_LINKS_END -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Zoznam spravuje deploy workflow. Hlavna stranka ostava na
+        <a href="index.html">index.html</a> a preview vetvy sa zobrazuju tu.
+      </p>
+    </footer>
+  </body>
+</html>
