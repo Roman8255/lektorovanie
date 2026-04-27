@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jednoducha prezentacia zakladov HTML a CSS s ukazkami kodu a vysledku."
+    />
+    <title>HTML a CSS jednoducho</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <p class="eyebrow">Jednoducha prezentacia</p>
+      <h1>HTML a CSS na jednom priklade</h1>
+      <p class="lead">
+        Tato stranka ukazuje, ako je poskladany HTML dokument, co patri do
+        <code>&lt;head&gt;</code>, co sa pise do <code>&lt;body&gt;</code> a ako
+        CSS meni vzhlad obsahu.
+      </p>
+
+      <nav class="quick-nav" aria-label="Obsah prezentacie">
+        <a href="#kostra">Kostra dokumentu</a>
+        <a href="#head">Co je v head</a>
+        <a href="#html-prvky">HTML prvky</a>
+        <a href="#css">CSS</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="card" id="kostra">
+        <div class="section-heading">
+          <p class="section-index">01</p>
+          <div>
+            <h2>Kostra HTML dokumentu</h2>
+            <p>
+              Kazda HTML stranka ma zakladnu strukturu. Prehliadac podla nej
+              vie, kde su informacie o stranke a kde je viditelny obsah.
+            </p>
+          </div>
+        </div>
+
+        <div class="example-grid">
+          <article>
+            <h3>Zapis</h3>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="sk"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Moja stranka&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Ahoj svet&lt;/h1&gt;
+    &lt;p&gt;Toto je obsah stranky.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </article>
+
+          <article>
+            <h3>Co znamena</h3>
+            <ul class="feature-list">
+              <li><code>&lt;!DOCTYPE html&gt;</code> povie, ze ide o HTML5.</li>
+              <li><code>&lt;html&gt;</code> je obal celeho dokumentu.</li>
+              <li><code>&lt;head&gt;</code> obsahuje nastavenia a metadata.</li>
+              <li><code>&lt;body&gt;</code> obsahuje to, co vidi navstevnik.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="card accent" id="head">
+        <div class="section-heading">
+          <p class="section-index">02</p>
+          <div>
+            <h2>Co sa dava do &lt;head&gt;</h2>
+            <p>
+              Cast <code>&lt;head&gt;</code> sa nezobrazuje ako hlavny obsah
+              stranky, ale je dolezita pre prehliadac, mobil, vyhladavace aj
+              nacitanie stylov.
+            </p>
+          </div>
+        </div>
+
+        <div class="example-grid">
+          <article>
+            <h3>Priklad head</h3>
+            <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport"
+        content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;meta name="description"
+        content="Jednoducha HTML stranka" /&gt;
+  &lt;title&gt;HTML a CSS jednoducho&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css" /&gt;
+&lt;/head&gt;</code></pre>
+          </article>
+
+          <article>
+            <h3>Preco je to uzitocne</h3>
+            <div class="callout-list">
+              <div>
+                <strong><code>charset</code></strong>
+                <p>Spravne zobrazi diakritiku a specialne znaky.</p>
+              </div>
+              <div>
+                <strong><code>viewport</code></strong>
+                <p>Pomaha, aby stranka fungovala dobre aj na mobile.</p>
+              </div>
+              <div>
+                <strong><code>title</code></strong>
+                <p>Nazov karty v prehliadaci a dolezity text pre SEO.</p>
+              </div>
+              <div>
+                <strong><code>link</code></strong>
+                <p>Pripoji externy CSS subor so stylmi.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" id="html-prvky">
+        <div class="section-heading">
+          <p class="section-index">03</p>
+          <div>
+            <h2>Zakladne HTML prvky</h2>
+            <p>
+              HTML popisuje strukturu obsahu. Tu je vidiet zapis a hned vedla
+              aj vysledok.
+            </p>
+          </div>
+        </div>
+
+        <div class="showcase-grid">
+          <article>
+            <h3>Nadpis, text a odkaz</h3>
+            <pre><code>&lt;h2&gt;Moja tema&lt;/h2&gt;
+&lt;p&gt;Toto je kratky odsek textu.&lt;/p&gt;
+&lt;a href="#"&gt;Zistit viac&lt;/a&gt;</code></pre>
+            <div class="preview-box">
+              <h2>Moja tema</h2>
+              <p>Toto je kratky odsek textu.</p>
+              <a href="#">Zistit viac</a>
+            </div>
+          </article>
+
+          <article>
+            <h3>Zoznam</h3>
+            <pre><code>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            <div class="preview-box">
+              <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+            </div>
+          </article>
+
+          <article>
+            <h3>Tlacidlo a karta</h3>
+            <pre><code>&lt;div class="karta"&gt;
+  &lt;h3&gt;Kurz HTML&lt;/h3&gt;
+  &lt;p&gt;Zaklady struktury webu.&lt;/p&gt;
+  &lt;button&gt;Prihlasit sa&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            <div class="preview-box mini-card">
+              <h3>Kurz HTML</h3>
+              <p>Zaklady struktury webu.</p>
+              <button type="button">Prihlasit sa</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card accent" id="css">
+        <div class="section-heading">
+          <p class="section-index">04</p>
+          <div>
+            <h2>Ako funguje CSS</h2>
+            <p>
+              CSS meni farby, medzery, velkost pisma a rozlozenie. HTML hovori,
+              co je na stranke. CSS hovori, ako to ma vyzerat.
+            </p>
+          </div>
+        </div>
+
+        <div class="example-grid">
+          <article>
+            <h3>Priklad CSS</h3>
+            <pre><code>body {
+  font-family: Arial, sans-serif;
+  background: #f4efe8;
+  color: #1f2933;
+}
+
+button {
+  background: #d97706;
+  color: white;
+  border: none;
+}</code></pre>
+          </article>
+
+          <article>
+            <h3>Jednoduche pravidlo</h3>
+            <div class="formula">
+              <p><strong>selektor</strong> + <strong>{ vlastnost: hodnota; }</strong></p>
+              <p class="muted">
+                Napriklad: <code>h1 { color: tomato; }</code>
+              </p>
+            </div>
+            <p>
+              Selektor vyberie prvok a blok v zlozenych zatvorkach urci jeho
+              vzhlad.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Tip: otvor tento subor v prehliadaci a skus menit texty, farby alebo
+        pridat dalsi vlastny element.
+      </p>
+    </footer>
+  </body>
+</html>

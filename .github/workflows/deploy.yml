@@ -1,0 +1,61 @@
+name: Deploy Web Folder To Server
+
+on:
+  push:
+    branches:
+      - "**"
+
+env:
+  REMOTE_BASE_DIR: /var/www/web9020
+  SOURCE_DIR: web/teraz_ty
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: deploy
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install cloudflared
+        run: |
+          curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg \
+            | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
+          echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared any main" \
+            | sudo tee /etc/apt/sources.list.d/cloudflared.list
+          sudo apt-get update -qq && sudo apt-get install -y cloudflared
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          cat > ~/.ssh/config <<'EOF'
+          Host serverssh.serveros.uk
+            User ${{ vars.SERVER_USER }}
+            ProxyCommand cloudflared access ssh --hostname %h
+            IdentityFile ~/.ssh/id_rsa
+            IdentitiesOnly yes
+            StrictHostKeyChecking accept-new
+          EOF
+          chmod 600 ~/.ssh/config
+
+      - name: Compute branch directory
+        id: branch_dir
+        run: |
+          BRANCH_DIR=$(printf '%s' "${GITHUB_REF_NAME}" | sed 's#[^A-Za-z0-9._-]#-#g')
+          echo "branch_dir=${BRANCH_DIR}" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare remote directory
+        run: |
+          ssh ${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }} \
+            "mkdir -p '${{ env.REMOTE_BASE_DIR }}/${{ steps.branch_dir.outputs.branch_dir }}'"
+
+      - name: Upload teraz_ty folder
+        run: |
+          rsync -avh --delete \
+            --exclude='.git' \
+            -e "ssh" \
+            "${{ env.SOURCE_DIR }}/" \
+            "${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:${{ env.REMOTE_BASE_DIR }}/${{ steps.branch_dir.outputs.branch_dir }}/"
