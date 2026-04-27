@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background: linear-gradient(180deg, #eef4ff 0%, #f7f8fc 100%);
   color: #222;
   line-height: 1.6;
 }
@@ -13,28 +13,90 @@ body {
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 48px 20px;
+}
+
+.hero,
+.card {
   background-color: white;
+  border: 1px solid #dbe4f0;
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.08);
+}
+
+.hero {
+  padding: 32px;
+  margin-bottom: 20px;
+}
+
+.card {
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.intro {
+  max-width: 60ch;
+  margin-bottom: 0;
+  color: #475569;
 }
 
 h1 {
   color: #1d4ed8;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 42px;
 }
 
 h2 {
   color: #333;
+  margin-top: 0;
+  margin-bottom: 12px;
 }
 
 a {
   color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 ul {
   padding-left: 20px;
+  margin: 0;
 }
 
-.red {
-  color: red;
-  font-size: 12px;
-  font-weight: bold;
+.skill-list li,
+.link-list li {
+  margin-bottom: 8px;
+}
+
+.note-box {
+  background: #eff6ff;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 24px 14px;
+  }
+
+  .hero,
+  .card {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
 }
