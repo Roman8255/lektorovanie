@@ -7,6 +7,7 @@ on:
 
 env:
   REMOTE_BASE_DIR: /var/www/web9020
+  MAIN_SOURCE_DIR: web
   SOURCE_DIR: web/teraz_ty
 
 jobs:
@@ -47,15 +48,33 @@ jobs:
           BRANCH_DIR=$(printf '%s' "${GITHUB_REF_NAME}" | sed 's#[^A-Za-z0-9._-]#-#g')
           echo "branch_dir=${BRANCH_DIR}" >> "$GITHUB_OUTPUT"
 
-      - name: Prepare remote directory
+      - name: Prepare remote directory for preview branch
+        if: github.ref_name != 'main'
         run: |
           ssh ${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }} \
             "mkdir -p '${{ env.REMOTE_BASE_DIR }}/${{ steps.branch_dir.outputs.branch_dir }}'"
 
-      - name: Upload teraz_ty folder
+      - name: Upload preview branch
+        if: github.ref_name != 'main'
         run: |
           rsync -avh --delete \
             --exclude='.git' \
             -e "ssh" \
             "${{ env.SOURCE_DIR }}/" \
             "${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:${{ env.REMOTE_BASE_DIR }}/${{ steps.branch_dir.outputs.branch_dir }}/"
+
+      - name: Prepare remote directory for main
+        if: github.ref_name == 'main'
+        run: |
+          ssh ${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }} \
+            "mkdir -p '${{ env.REMOTE_BASE_DIR }}'"
+
+      - name: Upload main branch web folder
+        if: github.ref_name == 'main'
+        run: |
+          rsync -avh --delete \
+            --exclude='.git' \
+            --exclude='teraz_ty' \
+            -e "ssh" \
+            "${{ env.MAIN_SOURCE_DIR }}/" \
+            "${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:${{ env.REMOTE_BASE_DIR }}/"
