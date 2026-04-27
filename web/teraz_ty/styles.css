@@ -115,3 +115,23 @@ nav a {
   color: white !important;
   font-weight: 600;
 }
+.separator{
+  width: 100%;
+  height: 2px;
+  background-color: #a3c9ff;
+}
+
+.galery{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.galery-card {
+  background-color: rgb(190, 230, 255);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.galery img {
+  width: 100%;
+}
