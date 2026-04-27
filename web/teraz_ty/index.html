@@ -3,26 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moja prva stranka</title>
+    <title>Cat Flap</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Tu je nadpis</h1>
+    <main class="game-shell">
+      <section class="intro">
+        <p class="eyebrow">HTML + CSS + JavaScript</p>
+        <h1>Cat Flap</h1>
+        <p class="description">
+          Klikni alebo stlac medzernik a pomoz macicke preskakovat medzi
+          natiahnutymi macacimi prekazkami.
+        </p>
+      </section>
 
-      <p>Tu pis text do prveho odseku.</p>
+      <section class="game-panel">
+        <div class="hud">
+          <div>
+            <span class="label">Skore</span>
+            <strong id="score">0</strong>
+          </div>
+          <button id="restartButton" type="button">Restart</button>
+        </div>
 
-      <h2>Tu je mensi nadpis</h2>
+        <canvas
+          id="gameCanvas"
+          width="420"
+          height="640"
+          aria-label="Hra s lietajucou macickou"
+        ></canvas>
 
-      <p>Tu mozu studenti pisat dalsi text alebo skusat vlastne HTML tagy.</p>
+        <p class="hint">Ovládanie: klik, tap alebo medzernik</p>
+      </section>
+    </main>
 
-      <a href="#">Tu moze byt odkaz</a>
-
-      <ul>
-        <li>Tu je prva polozka</li>
-        <li>Tu je druha polozka</li>
-        <li>Tu je tretia polozka</li>
-      </ul>
-    </div>
+    <script src="script.js"></script>
   </body>
 </html>
