@@ -1,28 +1,2387 @@
 <!DOCTYPE html>
 <html lang="sk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moja prva stranka</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Tu je nadpis</h1>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BikeStore Neo — Kompletný E‑shop</title>
 
-      <p>Tu pis text do prveho odseku.</p>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-      <h2>Tu je mensi nadpis</h2>
+<style>
+:root{
+    --bg: #f5f5f7;
+    --bg-elevated: #ffffff;
+    --text: #111111;
+    --text-muted: #6b6b6f;
+    --accent: #0071e3;
+    --accent-soft: rgba(0,113,227,0.12);
+    --border-soft: #e2e2e7;
+    --card-radius: 20px;
+    --shadow-soft: 0 18px 45px rgba(15,23,42,0.12);
+}
 
-      <p>Tu mozu studenti pisat dalsi text alebo skusat vlastne HTML tagy.</p>
+[data-theme="dark"]{
+    --bg: #050816;
+    --bg-elevated: #0b1020;
+    --text: #f9fafb;
+    --text-muted: #9ca3af;
+    --accent: #38bdf8;
+    --accent-soft: rgba(56,189,248,0.16);
+    --border-soft: #1f2937;
+    --shadow-soft: 0 18px 45px rgba(0,0,0,0.7);
+}
 
-      <a href="#">Tu moze byt odkaz</a>
+*{box-sizing:border-box;}
 
-      <ul>
-        <li>Tu je prva polozka</li>
-        <li>Tu je druha polozka</li>
-        <li>Tu je tretia polozka</li>
-      </ul>
+body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:background 0.3s ease,color 0.3s ease;
+}
+
+.app-shell{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* HEADER */
+header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    backdrop-filter:blur(18px);
+    background:color-mix(in srgb, var(--bg) 80%, transparent);
+    border-bottom:1px solid var(--border-soft);
+}
+
+.navbar{
+    max-width:1200px;
+    margin:0 auto;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    letter-spacing:0.03em;
+}
+
+.brand-icon{
+    width:32px;
+    height:32px;
+    border-radius:999px;
+    background:radial-gradient(circle at 30% 20%, #f97316, #ec4899 40%, #6366f1 80%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:18px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    font-size:14px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:var(--text-muted);
+    padding:6px 10px;
+    border-radius:999px;
+    transition:0.2s;
+}
+
+.nav-links a.active,
+.nav-links a:hover{
+    color:var(--text);
+    background:var(--accent-soft);
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* HAMBURGER */
+.hamburger{
+    display:none;
+    flex-direction:column;
+    gap:4px;
+    cursor:pointer;
+}
+
+.hamburger span{
+    width:20px;
+    height:2px;
+    background:var(--text);
+    border-radius:999px;
+    transition:0.2s;
+}
+
+/* THEME TOGGLE & ICON BTNS */
+.toggle-theme,
+.icon-btn{
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    background:var(--bg-elevated);
+    padding:6px 10px;
+    font-size:12px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+    color:var(--text-muted);
+}
+
+.icon-btn{
+    font-size:14px;
+    position:relative;
+}
+
+.icon-badge{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    background:var(--accent);
+    color:white;
+    font-size:10px;
+    padding:2px 5px;
+    border-radius:999px;
+}
+
+/* MOBILE NAV */
+@media(max-width:900px){
+    .nav-links{
+        position:fixed;
+        inset:56px 16px auto 16px;
+        background:var(--bg-elevated);
+        border-radius:18px;
+        box-shadow:var(--shadow-soft);
+        padding:12px;
+        flex-direction:column;
+        align-items:flex-start;
+        transform:translateY(-20px);
+        opacity:0;
+        pointer-events:none;
+        transition:0.25s ease;
+    }
+    .nav-links.open{
+        transform:translateY(0);
+        opacity:1;
+        pointer-events:auto;
+    }
+    .hamburger{
+        display:flex;
+    }
+}
+
+/* HERO */
+.hero{
+    max-width:1200px;
+    margin:0 auto;
+    padding:32px 20px 10px;
+    display:grid;
+    grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+    gap:28px;
+    align-items:center;
+}
+
+@media(max-width:900px){
+    .hero{
+        grid-template-columns:1fr;
+        padding-top:24px;
+    }
+}
+
+.hero-text h1{
+    font-size:clamp(32px,4vw,44px);
+    margin:0 0 10px;
+    letter-spacing:-0.03em;
+}
+
+.hero-text p{
+    margin:0 0 18px;
+    color:var(--text-muted);
+    max-width:420px;
+    font-size:14px;
+}
+
+.hero-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:18px;
+}
+
+.hero-tag{
+    font-size:11px;
+    padding:4px 10px;
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    color:var(--text-muted);
+}
+
+.hero-cta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+}
+
+.btn-primary{
+    border:none;
+    border-radius:999px;
+    padding:9px 18px;
+    background:var(--accent);
+    color:white;
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(37,99,235,0.35);
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.btn-ghost{
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    background:var(--bg-elevated);
+    padding:8px 14px;
+    font-size:12px;
+    cursor:pointer;
+    color:var(--text-muted);
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.hero-badge{
+    margin-top:10px;
+    font-size:11px;
+    color:var(--text-muted);
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.hero-badge span{
+    width:8px;
+    height:8px;
+    border-radius:999px;
+    background:radial-gradient(circle at 30% 20%, #22c55e, #16a34a);
+}
+
+/* HERO VISUAL */
+.hero-visual{
+    position:relative;
+}
+
+.hero-card{
+    border-radius:26px;
+    background:radial-gradient(circle at 0 0, rgba(56,189,248,0.18), transparent 55%),
+               radial-gradient(circle at 100% 100%, rgba(244,114,182,0.18), transparent 55%),
+               var(--bg-elevated);
+    padding:18px;
+    box-shadow:var(--shadow-soft);
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-bike{
+    border-radius:22px;
+    overflow:hidden;
+}
+
+.hero-bike img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+}
+
+.hero-chip-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:10px;
+    font-size:11px;
+    color:var(--text-muted);
+}
+
+.hero-chip{
+    padding:4px 10px;
+    border-radius:999px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    font-weight:500;
+}
+
+.hero-price{
+    font-weight:600;
+    font-size:16px;
+}
+
+/* SECTIONS */
+main{flex:1;}
+
+.section{
+    max-width:1200px;
+    margin:0 auto;
+    padding:24px 20px 40px;
+}
+
+.section h2{
+    margin:0 0 12px;
+    font-size:20px;
+}
+
+.section p.section-sub{
+    margin:0 0 18px;
+    font-size:13px;
+    color:var(--text-muted);
+}
+
+/* FILTER BAR */
+.filter-bar{
+    margin-top:10px;
+    padding:14px 16px;
+    border-radius:18px;
+    background:var(--bg-elevated);
+    border:1px solid var(--border-soft);
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.filter-left,
+.filter-right{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+}
+
+.chip-filter{
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    background:var(--bg);
+    padding:6px 12px;
+    font-size:12px;
+    cursor:pointer;
+    color:var(--text-muted);
+}
+
+.chip-filter.active{
+    background:var(--accent);
+    color:white;
+    border-color:var(--accent);
+}
+
+.search-input,
+.select-sort{
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    padding:7px 12px;
+    font-size:12px;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* GRIDS */
+.products-grid{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:18px;
+}
+
+.brands-grid{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+    gap:14px;
+}
+
+.brand-card{
+    border-radius:16px;
+    background:var(--bg-elevated);
+    border:1px solid var(--border-soft);
+    padding:12px;
+    font-size:13px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.reviews-grid{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:16px;
+}
+
+.review-card{
+    border-radius:18px;
+    background:var(--bg-elevated);
+    border:1px solid var(--border-soft);
+    padding:14px;
+    font-size:13px;
+}
+
+.blog-grid{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:16px;
+}
+
+.blog-card{
+    border-radius:18px;
+    background:var(--bg-elevated);
+    border:1px solid var(--border-soft);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+.blog-card img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+}
+
+.blog-body{
+    padding:12px;
+    font-size:13px;
+}
+
+.service-grid{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:16px;
+}
+
+.service-card{
+    border-radius:18px;
+    background:var(--bg-elevated);
+    border:1px solid var(--border-soft);
+    padding:14px;
+    font-size:13px;
+}
+
+/* COMPARE TABLE */
+.compare-table{
+    margin-top:16px;
+    border-radius:18px;
+    background:var(--bg-elevated);
+    border:1px solid var(--border-soft);
+    overflow:auto;
+    font-size:12px;
+}
+
+.compare-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.compare-table th,
+.compare-table td{
+    padding:8px 10px;
+    border-bottom:1px solid var(--border-soft);
+}
+
+.compare-table th{
+    text-align:left;
+    background:var(--accent-soft);
+}
+
+/* NEWSLETTER */
+.newsletter-box{
+    margin-top:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.newsletter-box input{
+    flex:1;
+    min-width:200px;
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    padding:8px 12px;
+    font-size:13px;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* PRODUCT CARD */
+.product-card{
+    border-radius:var(--card-radius);
+    background:var(--bg-elevated);
+    border:1px solid var(--border-soft);
+    box-shadow:0 0 0 rgba(0,0,0,0);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    cursor:pointer;
+    position:relative;
+    transform:translateY(10px);
+    opacity:0;
+    animation:cardIn 0.4s forwards;
+}
+
+.product-card:hover{
+    box-shadow:var(--shadow-soft);
+    transform:translateY(-4px);
+}
+
+.product-img-wrap{
+    position:relative;
+    overflow:hidden;
+}
+
+.product-img-wrap img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    display:block;
+    transition:transform 0.4s ease;
+}
+
+.product-card:hover img{
+    transform:scale(1.05);
+}
+
+.product-type-pill{
+    position:absolute;
+    top:10px;
+    left:10px;
+    padding:4px 9px;
+    border-radius:999px;
+    font-size:10px;
+    background:rgba(15,23,42,0.7);
+    color:white;
+}
+
+.product-fav{
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:26px;
+    height:26px;
+    border-radius:999px;
+    background:rgba(15,23,42,0.7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    color:white;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.product-fav.active{
+    background:#f97316;
+}
+
+.product-body{
+    padding:12px 12px 10px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.product-name{
+    font-size:14px;
+    font-weight:500;
+}
+
+.product-meta{
+    font-size:11px;
+    color:var(--text-muted);
+}
+
+.product-bottom{
+    margin-top:8px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.product-price{
+    font-weight:600;
+    font-size:15px;
+}
+
+.product-actions{
+    display:flex;
+    gap:6px;
+}
+
+.btn-small{
+    border-radius:999px;
+    border:none;
+    padding:6px 10px;
+    font-size:11px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.btn-small.primary{
+    background:var(--accent);
+    color:white;
+}
+
+.btn-small.ghost{
+    background:var(--bg);
+    color:var(--text-muted);
+}
+
+/* PAGINATION */
+.pagination{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    align-items:center;
+    font-size:12px;
+    color:var(--text-muted);
+}
+
+.page-btn{
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    background:var(--bg-elevated);
+    padding:5px 10px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.page-btn.active{
+    background:var(--accent);
+    color:white;
+    border-color:var(--accent);
+}
+
+/* CART SIDEBAR */
+.cart-sidebar{
+    position:fixed;
+    top:0;
+    right:-380px;
+    width:320px;
+    max-width:90vw;
+    height:100vh;
+    background:var(--bg-elevated);
+    box-shadow:-18px 0 40px rgba(15,23,42,0.4);
+    z-index:30;
+    padding:18px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    transition:0.3s ease;
+}
+
+.cart-sidebar.open{
+    right:0;
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:6px;
+}
+
+.cart-header h3{
+    margin:0;
+    font-size:16px;
+}
+
+.cart-close{
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    background:var(--bg);
+    padding:4px 8px;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.cart-list{
+    flex:1;
+    overflow:auto;
+    padding-right:4px;
+}
+
+.cart-item{
+    display:flex;
+    gap:8px;
+    padding:8px 4px;
+    border-bottom:1px solid var(--border-soft);
+    font-size:12px;
+}
+
+.cart-item-img{
+    width:46px;
+    height:46px;
+    border-radius:12px;
+    overflow:hidden;
+    flex-shrink:0;
+}
+
+.cart-item-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.cart-item-main{
+    flex:1;
+}
+
+.cart-item-name{
+    font-weight:500;
+    margin-bottom:2px;
+}
+
+.cart-item-meta{
+    color:var(--text-muted);
+    font-size:11px;
+}
+
+.cart-item-actions{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:4px;
+}
+
+.qty-controls{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.qty-btn{
+    width:20px;
+    height:20px;
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    background:var(--bg);
+    font-size:12px;
+    cursor:pointer;
+}
+
+.cart-footer{
+    border-top:1px solid var(--border-soft);
+    padding-top:8px;
+    font-size:13px;
+}
+
+.cart-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:4px;
+}
+
+.cart-row.total{
+    font-weight:600;
+}
+
+.cart-checkout-btn{
+    margin-top:8px;
+    width:100%;
+    border:none;
+    border-radius:999px;
+    padding:9px 0;
+    background:var(--accent);
+    color:white;
+    font-size:13px;
+    cursor:pointer;
+}
+
+/* PRODUCT DETAIL MODAL */
+.modal-backdrop{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:40;
+    opacity:0;
+    transition:opacity 0.25s ease;
+}
+
+.modal-backdrop.open{
+    display:flex;
+    opacity:1;
+}
+
+.modal{
+    width:min(520px, 94vw);
+    border-radius:24px;
+    background:var(--bg-elevated);
+    box-shadow:var(--shadow-soft);
+    overflow:hidden;
+    transform:translateY(20px);
+    animation:modalIn 0.25s forwards;
+}
+
+.modal-img img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+}
+
+.modal-body{
+    padding:16px 16px 14px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.modal-title{
+    font-size:18px;
+    margin:0 0 4px;
+}
+
+.modal-type{
+    font-size:11px;
+    color:var(--text-muted);
+}
+
+.modal-price{
+    font-size:18px;
+    font-weight:600;
+}
+
+.modal-specs{
+    margin-top:10px;
+    font-size:12px;
+    color:var(--text-muted);
+}
+
+.modal-actions{
+    margin-top:14px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.modal-close{
+    margin-top:10px;
+    text-align:right;
+    font-size:11px;
+    color:var(--text-muted);
+    cursor:pointer;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--bg-elevated);
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    padding:8px 14px;
+    font-size:12px;
+    box-shadow:var(--shadow-soft);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    opacity:0;
+    pointer-events:none;
+    z-index:50;
+}
+
+.toast.show{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(0);
+    transition:0.25s ease;
+}
+
+/* VIEWS */
+.view{
+    opacity:0;
+    transform:translateY(10px);
+    transition:0.25s ease;
+    display:none;
+}
+
+.view.active{
+    opacity:1;
+    transform:translateY(0);
+    display:block;
+}
+
+/* CHECKOUT MODAL (3 kroky) */
+.checkout-backdrop{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:45;
+    opacity:0;
+    transition:opacity 0.25s ease;
+}
+
+.checkout-backdrop.open{
+    display:flex;
+    opacity:1;
+}
+
+.checkout-modal{
+    width:min(520px, 94vw);
+    border-radius:24px;
+    background:var(--bg-elevated);
+    box-shadow:var(--shadow-soft);
+    padding:18px 18px 16px;
+    font-size:13px;
+}
+
+.checkout-steps{
+    display:flex;
+    gap:6px;
+    margin-bottom:10px;
+}
+
+.checkout-step{
+    flex:1;
+    padding:6px 8px;
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    text-align:center;
+    font-size:11px;
+    color:var(--text-muted);
+}
+
+.checkout-step.active{
+    background:var(--accent);
+    color:white;
+    border-color:var(--accent);
+}
+
+.checkout-body{
+    margin-top:6px;
+}
+
+.checkout-row{
+    margin-bottom:8px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.checkout-row input,
+.checkout-row select{
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    padding:7px 10px;
+    font-size:12px;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.checkout-actions{
+    margin-top:10px;
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+}
+
+.checkout-close{
+    margin-top:8px;
+    text-align:right;
+    font-size:11px;
+    color:var(--text-muted);
+    cursor:pointer;
+}
+
+/* ABOUT / CONTACT / ACCOUNT SIMPLE STYLES */
+.info-block{
+    border-radius:18px;
+    background:var(--bg-elevated);
+    border:1px solid var(--border-soft);
+    padding:16px;
+    font-size:13px;
+    margin-top:10px;
+}
+
+.info-block h3{
+    margin-top:0;
+    margin-bottom:6px;
+    font-size:15px;
+}
+
+/* FOOTER */
+footer{
+    border-top:1px solid var(--border-soft);
+    padding:18px 20px 10px;
+    font-size:11px;
+    color:var(--text-muted);
+}
+
+.footer-columns{
+    max-width:1200px;
+    margin:0 auto 10px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:16px;
+}
+
+.footer-col h4{
+    margin:0 0 6px;
+    font-size:13px;
+}
+
+.footer-col p{
+    margin:0 0 4px;
+}
+
+.footer-col a{
+    display:block;
+    font-size:12px;
+    color:var(--text-muted);
+    text-decoration:none;
+    margin-bottom:4px;
+}
+
+.footer-col input{
+    width:100%;
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    padding:7px 10px;
+    font-size:12px;
+    background:var(--bg);
+    color:var(--text);
+    margin-bottom:6px;
+}
+
+.footer-bottom{
+    max-width:1200px;
+    margin:0 auto;
+    text-align:center;
+    border-top:1px solid var(--border-soft);
+    padding-top:8px;
+}
+
+/* ANIMATIONS */
+@keyframes cardIn{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes modalIn{
+    from{transform:translateY(20px);}
+    to{transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<div class="app-shell" id="app">
+
+<header>
+    <div class="navbar">
+        <div class="brand">
+            <div class="brand-icon">🚴‍♂️</div>
+            <span>BikeStore Neo</span>
+        </div>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#" data-view="home" class="active">Domov</a>
+            <a href="#" data-view="products">Bicykle</a>
+            <a href="#" data-view="brands">Značky</a>
+            <a href="#" data-view="service">Servis</a>
+            <a href="#" data-view="blog">Blog</a>
+            <a href="#" data-view="about">O nás</a>
+            <a href="#" data-view="contact">Kontakt</a>
+            <a href="#" data-view="account">Účet</a>
+        </nav>
+
+        <div class="nav-right">
+            <button class="toggle-theme" id="themeToggle">
+                <span id="themeIcon">🌙</span>
+                <span id="themeLabel">Tmavý režim</span>
+            </button>
+
+            <button class="icon-btn" id="favBtn">
+                ❤️
+                <span class="icon-badge" id="favCount">0</span>
+            </button>
+
+            <button class="icon-btn" id="cartBtn">
+                🛒
+                <span class="icon-badge" id="cartCount">0</span>
+            </button>
+
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
     </div>
-  </body>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="view active" id="view-home">
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Prémiové bicykle pre každú jazdu.</h1>
+            <p>Minimalistický Apple štýl, moderný e‑shop vibe a športový výkon v jednom. Svetlý aj tmavý režim.</p>
+            <div class="hero-tags">
+                <div class="hero-tag">Horské • Cestné • Gravel</div>
+                <div class="hero-tag">Doručenie do 48 hodín</div>
+                <div class="hero-tag">Záruka 5 rokov</div>
+            </div>
+            <div class="hero-cta">
+                <button class="btn-primary" id="heroShopBtn">Pozrieť bicykle →</button>
+                <button class="btn-ghost">Pozrieť akcie</button>
+            </div>
+            <div class="hero-badge">
+                <span></span>
+                <div>Overené jazdcami v Alpách, Tatrách aj mestských džungliach.</div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="hero-bike">
+                    <img src="https://images.unsplash.com/photo-1518655048521-f130df041f66?auto=format&fit=crop&w=1200&q=80" alt="Hero bike">
+                </div>
+                <div class="hero-chip-row">
+                    <div class="hero-chip">Novinka • Carbon Pro</div>
+                    <div class="hero-price">2 499€</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Najpredávanejšie -->
+    <section class="section" id="home-bestsellers">
+        <h2>Najpredávanejšie bicykle</h2>
+        <p class="section-sub">Modely, ktoré si zákazníci vyberajú najčastejšie.</p>
+        <div class="products-grid" id="bestsellersGrid"></div>
+    </section>
+
+    <!-- Novinky -->
+    <section class="section" id="home-new">
+        <h2>Novinky</h2>
+        <p class="section-sub">Čerstvo naskladnené modely pre novú sezónu.</p>
+        <div class="products-grid" id="newGrid"></div>
+    </section>
+
+    <!-- Prémiové modely -->
+    <section class="section" id="home-premium">
+        <h2>Prémiové modely</h2>
+        <p class="section-sub">Top výber pre náročných jazdcov.</p>
+        <div class="products-grid" id="premiumGrid"></div>
+    </section>
+
+    <!-- Značky -->
+    <section class="section" id="home-brands">
+        <h2>Značky</h2>
+        <p class="section-sub">Spolupracujeme s overenými výrobcami.</p>
+        <div class="brands-grid" id="brandsGrid"></div>
+    </section>
+
+    <!-- Recenzie -->
+    <section class="section" id="home-reviews">
+        <h2>Recenzie zákazníkov</h2>
+        <p class="section-sub">Skúsenosti jazdcov, ktorí už jazdia na našich bicykloch.</p>
+        <div class="reviews-grid" id="reviewsGrid"></div>
+    </section>
+
+    <!-- Blog -->
+    <section class="section" id="home-blog">
+        <h2>Najnovšie články</h2>
+        <p class="section-sub">Tipy na údržbu, trasy a tréning.</p>
+        <div class="blog-grid" id="blogGrid"></div>
+    </section>
+
+    <!-- Servis -->
+    <section class="section" id="home-service">
+        <h2>Servis a doplnky</h2>
+        <p class="section-sub">Postaráme sa o tvoj bike od A po Z.</p>
+        <div class="service-grid" id="serviceGrid"></div>
+    </section>
+
+    <!-- Porovnanie -->
+    <section class="section" id="home-compare">
+        <h2>Porovnanie modelov</h2>
+        <p class="section-sub">Vyber si ten, ktorý ti sedí najviac.</p>
+        <div class="compare-table" id="compareTable"></div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section" id="home-newsletter">
+        <h2>Newsletter</h2>
+        <p class="section-sub">Buď medzi prvými, ktorí sa dozvedia o novinkách a akciách.</p>
+        <div class="newsletter-box">
+            <input type="email" placeholder="Tvoj email">
+            <button class="btn-primary">Odoberať</button>
+        </div>
+    </section>
+</section>
+
+<!-- PRODUCTS -->
+<section class="view" id="view-products">
+    <div class="section">
+        <h2>Všetky bicykle</h2>
+        <p class="section-sub">Filtrovanie, triedenie, stránkovanie a detail produktu.</p>
+
+        <div class="filter-bar">
+            <div class="filter-left">
+                <button class="chip-filter active" data-filter="all">Všetko</button>
+                <button class="chip-filter" data-filter="mountain">Horské</button>
+                <button class="chip-filter" data-filter="road">Cestné</button>
+                <button class="chip-filter" data-filter="gravel">Gravel</button>
+                <button class="chip-filter" data-filter="urban">Mestské</button>
+            </div>
+            <div class="filter-right">
+                <input type="text" class="search-input" id="searchInput" placeholder="Hľadaj bicykel...">
+                <select class="select-sort" id="sortSelect">
+                    <option value="default">Triedenie: odporúčané</option>
+                    <option value="price-asc">Cena: od najnižšej</option>
+                    <option value="price-desc">Cena: od najvyššej</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+</section>
+
+<!-- BRANDS -->
+<section class="view" id="view-brands">
+    <div class="section">
+        <h2>Značky</h2>
+        <p class="section-sub">Prehľad značiek, s ktorými jazdíme.</p>
+        <div class="brands-grid" id="brandsPageGrid"></div>
+    </div>
+</section>
+
+<!-- SERVICE -->
+<section class="view" id="view-service">
+    <div class="section">
+        <h2>Servis bicyklov</h2>
+        <p class="section-sub">Servisné balíky, cenník a objednávka servisu.</p>
+        <div id="serviceContent" class="info-block">
+            <h3>Servisné balíky</h3>
+            <p><strong>Basic servis</strong> — 39€ — kontrola, mazanie, nastavenie bŕzd a radenia.</p>
+            <p><strong>Trail servis</strong> — 79€ — kompletná kontrola, centrovanie kolies, výmena lán a bowdenov.</p>
+            <p><strong>Race servis</strong> — 129€ — príprava na preteky, detailné nastavenie, kontrola tlmičov.</p>
+            <h3>Objednávka servisu</h3>
+            <p>Servis je demo — formulár neodosiela dáta, ale môžeš si vyskúšať flow.</p>
+            <div class="checkout-row">
+                <label>Meno a priezvisko</label>
+                <input type="text" placeholder="Tvoje meno">
+            </div>
+            <div class="checkout-row">
+                <label>Email</label>
+                <input type="email" placeholder="Tvoj email">
+            </div>
+            <div class="checkout-row">
+                <label>Typ servisu</label>
+                <select>
+                    <option>Basic servis</option>
+                    <option>Trail servis</option>
+                    <option>Race servis</option>
+                </select>
+            </div>
+            <button class="btn-primary">Simulovať objednávku servisu</button>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section class="view" id="view-blog">
+    <div class="section">
+        <h2>Blog</h2>
+        <p class="section-sub">Články o jazdení, údržbe a inšpirácii.</p>
+        <div class="blog-grid" id="blogPageGrid"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="view" id="view-about">
+    <div class="section">
+        <h2>O nás</h2>
+        <p class="section-sub">Príbeh, hodnoty a tím BikeStore Neo.</p>
+        <div id="aboutContent" class="info-block">
+            <h3>Náš príbeh</h3>
+            <p>BikeStore Neo vznikol z lásky k jazdeniu. Chceli sme spojiť prémiové bicykle, moderný e‑shop a ľudský prístup.</p>
+            <h3>Hodnoty</h3>
+            <ul>
+                <li>Kvalita pred kvantitou</li>
+                <li>Transparentnosť a férovosť</li>
+                <li>Podpora komunity jazdcov</li>
+            </ul>
+            <h3>Tím</h3>
+            <p>Sme jazdci, mechanici, dizajnéri a vývojári, ktorí veria, že dobrý bike dokáže zmeniť deň.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="view" id="view-contact">
+    <div class="section">
+        <h2>Kontakt</h2>
+        <p class="section-sub">Ozvi sa nám, ak máš otázky.</p>
+        <div id="contactContent" class="info-block">
+            <h3>Kontaktné údaje</h3>
+            <p>Email: info@bikestore.sk</p>
+            <p>Tel: +421 900 000 000</p>
+            <p>Adresa: BikeStore Neo, Bratislava</p>
+            <h3>Kontaktný formulár (demo)</h3>
+            <div class="checkout-row">
+                <label>Meno</label>
+                <input type="text" placeholder="Tvoje meno">
+            </div>
+            <div class="checkout-row">
+                <label>Email</label>
+                <input type="email" placeholder="Tvoj email">
+            </div>
+            <div class="checkout-row">
+                <label>Správa</label>
+                <input type="text" placeholder="Tvoja správa">
+            </div>
+            <button class="btn-primary">Odoslať (demo)</button>
+        </div>
+    </div>
+</section>
+
+<!-- ACCOUNT -->
+<section class="view" id="view-account">
+    <div class="section">
+        <h2>Môj účet</h2>
+        <p class="section-sub">Demo sekcia účtu — uložené adresy, história objednávok, wishlist.</p>
+        <div id="accountContent" class="info-block">
+            <h3>Uložené adresy</h3>
+            <p>Adresy sú uložené len lokálne v prehliadači (demo).</p>
+            <div class="checkout-row">
+                <label>Adresa</label>
+                <input type="text" id="accountAddressInput" placeholder="Ulož si demo adresu">
+            </div>
+            <button class="btn-primary" id="saveAddressBtn">Uložiť adresu</button>
+            <p id="savedAddressText" style="margin-top:6px;color:var(--text-muted);font-size:12px;"></p>
+
+            <h3>História objednávok</h3>
+            <p>Po dokončení demo objednávky sa tu zobrazí záznam.</p>
+            <ul id="ordersList" style="padding-left:18px;font-size:12px;"></ul>
+
+            <h3>Wishlist</h3>
+            <p>Wishlist je prepojený s obľúbenými produktmi.</p>
+            <p style="font-size:12px;color:var(--text-muted);">Po pridaní produktov do obľúbených ich nájdeš aj tu.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FAVORITES -->
+<section class="view" id="view-favorites">
+    <div class="section">
+        <h2>Obľúbené bicykle</h2>
+        <p class="section-sub">Produkty, ktoré si si uložil medzi obľúbené.</p>
+        <div class="products-grid" id="favoritesGrid"></div>
+    </div>
+</section>
+
+</main>
+
+<!-- CART SIDEBAR -->
+<aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>Košík</h3>
+        <button class="cart-close" id="cartCloseBtn">Zavrieť</button>
+    </div>
+    <div class="cart-list" id="cartList"></div>
+    <div class="cart-footer">
+        <div class="cart-row">
+            <span>Medzisúčet</span>
+            <span id="cartSubtotal">0€</span>
+        </div>
+        <div class="cart-row">
+            <span>Doručenie</span>
+            <span>Zdarma</span>
+        </div>
+        <div class="cart-row total">
+            <span>Spolu</span>
+            <span id="cartTotal">0€</span>
+        </div>
+        <button class="cart-checkout-btn" id="checkoutBtn">Prejsť na checkout</button>
+    </div>
+</aside>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="productModal">
+        <div class="modal-img">
+            <img id="modalImg" src="" alt="">
+        </div>
+        <div class="modal-body">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="modalTitle"></h3>
+                    <div class="modal-type" id="modalType"></div>
+                </div>
+                <div class="modal-price" id="modalPrice"></div>
+            </div>
+            <div class="modal-specs" id="modalSpecs"></div>
+            <div class="modal-actions">
+                <button class="btn-primary" id="modalAddCartBtn">Pridať do košíka</button>
+                <button class="btn-ghost" id="modalFavBtn">❤️ Obľúbený</button>
+            </div>
+            <div class="modal-close" id="modalCloseText">Zavrieť</div>
+        </div>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL (3 kroky) -->
+<div class="checkout-backdrop" id="checkoutBackdrop">
+    <div class="checkout-modal">
+        <div class="checkout-steps">
+            <div class="checkout-step" data-step="1">1. Údaje</div>
+            <div class="checkout-step" data-step="2">2. Doručenie</div>
+            <div class="checkout-step" data-step="3">3. Platba</div>
+        </div>
+        <div class="checkout-body" id="checkoutBody"></div>
+        <div class="checkout-actions">
+            <button class="btn-ghost" id="checkoutPrevBtn">Späť</button>
+            <button class="btn-primary" id="checkoutNextBtn">Ďalej</button>
+        </div>
+        <div class="checkout-close" id="checkoutCloseText">Zavrieť checkout</div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+    <span>✅</span>
+    <span id="toastText">Pridané do košíka</span>
+</div>
+
+<footer>
+    <div class="footer-columns">
+        <div class="footer-col">
+            <h4>BikeStore Neo</h4>
+            <p>Prémiový e‑shop s bicyklami.</p>
+            <p>Minimalistický dizajn, športový výkon a moderný web.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Menu</h4>
+            <a href="#" data-view="home">Domov</a>
+            <a href="#" data-view="products">Bicykle</a>
+            <a href="#" data-view="service">Servis</a>
+            <a href="#" data-view="blog">Blog</a>
+        </div>
+        <div class="footer-col">
+            <h4>Kontakt</h4>
+            <p>Email: info@bikestore.sk</p>
+            <p>Tel: +421 900 000 000</p>
+            <p>Bratislava, Slovensko</p>
+        </div>
+        <div class="footer-col">
+            <h4>Newsletter</h4>
+            <input type="email" placeholder="Tvoj email">
+            <button class="btn-primary">Odoberať</button>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 BikeStore Neo — Demo e‑shop (frontend only)
+    </div>
+</footer>
+
+</div>
+
+<script>
+// DATA
+const products = [
+    {
+        id: 1,
+        name: "Alpine Trail Carbon Pro",
+        price: 2499,
+        type: "mountain",
+        img: "https://images.unsplash.com/photo-1500534314211-0a24cd03f2c0?auto=format&fit=crop&w=900&q=80",
+        specs: "Karbonový rám, 29\", 1x12, vzduchová vidlica, 4-piestové brzdy.",
+        tags: ["bestseller","premium"]
+    },
+    {
+        id: 2,
+        name: "City Flow Urban E‑Bike",
+        price: 1899,
+        type: "urban",
+        img: "https://images.unsplash.com/photo-1518655048521-f130df041f66?auto=format&fit=crop&w=900&q=80",
+        specs: "Elektromotor 250 W, dojazd 90 km, integrované svetlá, mestský komfort.",
+        tags: ["new"]
+    },
+    {
+        id: 3,
+        name: "Road Aero SL Disc",
+        price: 2199,
+        type: "road",
+        img: "https://images.unsplash.com/photo-1485965120184-e220f03e4f8f?auto=format&fit=crop&w=900&q=80",
+        specs: "Aero rám, karbónová vidlica, hydraulické kotúčové brzdy, 2x11.",
+        tags: ["bestseller","premium"]
+    },
+    {
+        id: 4,
+        name: "Gravel Explorer GX",
+        price: 1699,
+        type: "gravel",
+        img: "https://images.unsplash.com/photo-1517960413843-0aee8e2b3285?auto=format&fit=crop&w=900&q=80",
+        specs: "Gravel geometria, široké plášte, množstvo úchytov na bikepacking.",
+        tags: ["new"]
+    },
+    {
+        id: 5,
+        name: "Trail Beast Alloy",
+        price: 1350,
+        type: "mountain",
+        img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+        specs: "Hliníkový rám, 140 mm zdvih, spoľahlivá výbava na traily.",
+        tags: ["bestseller"]
+    },
+    {
+        id: 6,
+        name: "Urban SingleSpeed Minimal",
+        price: 599,
+        type: "urban",
+        img: "https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=900&q=80",
+        specs: "Minimalistický mestský bike, nízka údržba, čistý dizajn.",
+        tags: ["colorful"]
+    },
+    {
+        id: 7,
+        name: "Road Pro X Di2",
+        price: 3499,
+        type: "road",
+        img: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=900&q=80",
+        specs: "Elektronické radenie, karbónové kolesá, pretekárska geometria.",
+        tags: ["premium"]
+    },
+    {
+        id: 8,
+        name: "Gravel Adventure Steel",
+        price: 1499,
+        type: "gravel",
+        img: "https://images.unsplash.com/photo-1525104885119-8806dd94ad58?auto=format&fit=crop&w=900&q=80",
+        specs: "Oceľový rám, pohodlná geometria, ideálny na dlhé výlety.",
+        tags: ["bestseller"]
+    },
+    {
+        id: 9,
+        name: "Kids Fun 24\" Color",
+        price: 399,
+        type: "urban",
+        img: "https://images.unsplash.com/photo-1529424301806-4be0bb154e3b?auto=format&fit=crop&w=900&q=80",
+        specs: "Farebný a hravý detský bicykel, bezpečné komponenty.",
+        tags: ["colorful","new"]
+    },
+    {
+        id: 10,
+        name: "Enduro Race 170",
+        price: 2999,
+        type: "mountain",
+        img: "https://images.unsplash.com/photo-1518655048521-f130df041f66?auto=format&fit=crop&w=900&q=80",
+        specs: "Enduro špecifikácia, veľký zdvih, pripravený na bikepark.",
+        tags: ["premium"]
+    }
+];
+
+const brands = [
+    {name:"NeoRide", country:"Slovensko"},
+    {name:"AlpineWorks", country:"Rakúsko"},
+    {name:"UrbanFlow", country:"Nemecko"},
+    {name:"GravelLab", country:"Česko"},
+    {name:"TrailBeast", country:"Taliansko"},
+    {name:"RoadPro", country:"Francúzsko"}
+];
+
+const reviews = [
+    {name:"Marek", text:"Alpine Trail Carbon Pro je najlepší bike, na akom som jazdil. Stabilný, ľahký a rýchly."},
+    {name:"Zuzana", text:"City Flow E‑Bike mi zmenil dochádzanie do práce. Už sa teším na každé ráno."},
+    {name:"Peter", text:"Servis bol rýchly a férový. Bike ide ako nový."}
+];
+
+const blogPosts = [
+    {
+        title:"Ako si vybrať správny horský bicykel",
+        img:"https://images.unsplash.com/photo-1518091043644-c1f4c3a2f3c8?auto=format&fit=crop&w=900&q=80",
+        excerpt:"Základné parametre, na ktoré sa oplatí pozerať pri výbere horského bicykla."
+    },
+    {
+        title:"Top gravel trasy na Slovensku",
+        img:"https://images.unsplash.com/photo-1500534314211-0a24cd03f2c0?auto=format&fit=crop&w=900&q=80",
+        excerpt:"Objav menej známe cesty a šotolinové trasy, ktoré stoja za to."
+    },
+    {
+        title:"Ako sa starať o bike po daždi",
+        img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80",
+        excerpt:"Jednoduchý rituál po mokrej jazde, ktorý predĺži životnosť komponentov."
+    }
+];
+
+const serviceCards = [
+    {title:"Basic servis", text:"Kontrola, mazanie, nastavenie bŕzd a radenia.", price:"39€"},
+    {title:"Trail servis", text:"Kompletná kontrola, centrovanie kolies, výmena lán a bowdenov.", price:"79€"},
+    {title:"Race servis", text:"Detailná príprava na preteky, kontrola tlmičov a nastavenie.", price:"129€"}
+];
+
+// STATE
+let currentFilter = "all";
+let searchQuery = "";
+let sortMode = "default";
+let currentPage = 1;
+const perPage = 6;
+
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+let theme = localStorage.getItem("theme") || "light";
+let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+let savedAddress = localStorage.getItem("savedAddress") || "";
+
+let currentModalProductId = null;
+let checkoutStep = 1;
+
+// ELEMENTS
+const navLinks = document.getElementById("navLinks");
+const hamburger = document.getElementById("hamburger");
+const heroShopBtn = document.getElementById("heroShopBtn");
+
+const productsGrid = document.getElementById("productsGrid");
+const paginationEl = document.getElementById("pagination");
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+const filterButtons = document.querySelectorAll(".chip-filter");
+
+const bestsellersGrid = document.getElementById("bestsellersGrid");
+const newGrid = document.getElementById("newGrid");
+const premiumGrid = document.getElementById("premiumGrid");
+const brandsGrid = document.getElementById("brandsGrid");
+const brandsPageGrid = document.getElementById("brandsPageGrid");
+const reviewsGrid = document.getElementById("reviewsGrid");
+const blogGrid = document.getElementById("blogGrid");
+const blogPageGrid = document.getElementById("blogPageGrid");
+const serviceGrid = document.getElementById("serviceGrid");
+const compareTable = document.getElementById("compareTable");
+const favoritesGrid = document.getElementById("favoritesGrid");
+
+const cartSidebar = document.getElementById("cartSidebar");
+const cartBtn = document.getElementById("cartBtn");
+const cartCloseBtn = document.getElementById("cartCloseBtn");
+const cartList = document.getElementById("cartList");
+const cartSubtotal = document.getElementById("cartSubtotal");
+const cartTotal = document.getElementById("cartTotal");
+const cartCount = document.getElementById("cartCount");
+
+const favBtn = document.getElementById("favBtn");
+const favCount = document.getElementById("favCount");
+
+const modalBackdrop = document.getElementById("modalBackdrop");
+const modalImg = document.getElementById("modalImg");
+const modalTitle = document.getElementById("modalTitle");
+const modalType = document.getElementById("modalType");
+const modalPrice = document.getElementById("modalPrice");
+const modalSpecs = document.getElementById("modalSpecs");
+const modalAddCartBtn = document.getElementById("modalAddCartBtn");
+const modalFavBtn = document.getElementById("modalFavBtn");
+const modalCloseText = document.getElementById("modalCloseText");
+
+const toast = document.getElementById("toast");
+const toastText = document.getElementById("toastText");
+
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+const themeLabel = document.getElementById("themeLabel");
+
+const checkoutBackdrop = document.getElementById("checkoutBackdrop");
+const checkoutBody = document.getElementById("checkoutBody");
+const checkoutPrevBtn = document.getElementById("checkoutPrevBtn");
+const checkoutNextBtn = document.getElementById("checkoutNextBtn");
+const checkoutCloseText = document.getElementById("checkoutCloseText");
+
+const accountAddressInput = document.getElementById("accountAddressInput");
+const saveAddressBtn = document.getElementById("saveAddressBtn");
+const savedAddressText = document.getElementById("savedAddressText");
+const ordersList = document.getElementById("ordersList");
+
+// THEME
+function applyTheme(){
+    document.documentElement.setAttribute("data-theme", theme === "dark" ? "dark" : "light");
+    if(theme === "dark"){
+        themeIcon.textContent = "☀️";
+        themeLabel.textContent = "Svetlý režim";
+    }else{
+        themeIcon.textContent = "🌙";
+        themeLabel.textContent = "Tmavý režim";
+    }
+}
+applyTheme();
+
+themeToggle.addEventListener("click", ()=>{
+    theme = theme === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", theme);
+    applyTheme();
+});
+
+// NAVIGATION
+function setView(view){
+    document.querySelectorAll(".view").forEach(v=>{
+        v.classList.remove("active");
+    });
+    const el = document.getElementById("view-" + view);
+    if(el) el.classList.add("active");
+
+    document.querySelectorAll(".nav-links a").forEach(a=>{
+        a.classList.toggle("active", a.dataset.view === view);
+    });
+
+    if(view === "favorites") renderFavorites();
+    if(view === "account") renderAccount();
+}
+
+navLinks.addEventListener("click", (e)=>{
+    if(e.target.matches("a[data-view]")){
+        e.preventDefault();
+        const view = e.target.dataset.view;
+        setView(view);
+        navLinks.classList.remove("open");
+    }
+});
+
+heroShopBtn.addEventListener("click", ()=>{
+    setView("products");
+    window.scrollTo({top:0,behavior:"smooth"});
+});
+
+hamburger.addEventListener("click", ()=>{
+    navLinks.classList.toggle("open");
+});
+
+// FILTERS
+filterButtons.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        filterButtons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        currentFilter = btn.dataset.filter;
+        currentPage = 1;
+        renderProducts();
+    });
+});
+
+searchInput.addEventListener("input", ()=>{
+    searchQuery = searchInput.value.toLowerCase();
+    currentPage = 1;
+    renderProducts();
+});
+
+sortSelect.addEventListener("change", ()=>{
+    sortMode = sortSelect.value;
+    currentPage = 1;
+    renderProducts();
+});
+
+// FILTER + SORT + PAGINATION
+function getFilteredSortedProducts(){
+    let list = products.filter(p=>{
+        const matchesFilter = currentFilter === "all" || p.type === currentFilter;
+        const matchesSearch = p.name.toLowerCase().includes(searchQuery);
+        return matchesFilter && matchesSearch;
+    });
+
+    if(sortMode === "price-asc"){
+        list.sort((a,b)=>a.price - b.price);
+    }else if(sortMode === "price-desc"){
+        list.sort((a,b)=>b.price - a.price);
+    }
+
+    return list;
+}
+
+function renderPagination(total){
+    paginationEl.innerHTML = "";
+    const pages = Math.ceil(total / perPage);
+    if(pages <= 1) return;
+    for(let i=1;i<=pages;i++){
+        const btn = document.createElement("button");
+        btn.className = "page-btn" + (i === currentPage ? " active" : "");
+        btn.textContent = i;
+        btn.addEventListener("click", ()=>{
+            currentPage = i;
+            renderProducts();
+        });
+        paginationEl.appendChild(btn);
+    }
+}
+
+// PRODUCT CARD
+function createProductCard(p){
+    const card = document.createElement("div");
+    card.className = "product-card";
+
+    const imgWrap = document.createElement("div");
+    imgWrap.className = "product-img-wrap";
+
+    const img = document.createElement("img");
+    img.src = p.img;
+    img.alt = p.name;
+    imgWrap.appendChild(img);
+
+    const typePill = document.createElement("div");
+    typePill.className = "product-type-pill";
+    typePill.textContent = p.type === "mountain" ? "Horský" :
+                           p.type === "road" ? "Cestný" :
+                           p.type === "gravel" ? "Gravel" : "Mestský";
+    imgWrap.appendChild(typePill);
+
+    const favBtnEl = document.createElement("div");
+    favBtnEl.className = "product-fav" + (favorites.includes(p.id) ? " active" : "");
+    favBtnEl.innerHTML = "❤";
+    favBtnEl.addEventListener("click", (e)=>{
+        e.stopPropagation();
+        toggleFavorite(p.id);
+    });
+    imgWrap.appendChild(favBtnEl);
+
+    card.appendChild(imgWrap);
+
+    const body = document.createElement("div");
+    body.className = "product-body";
+
+    const nameEl = document.createElement("div");
+    nameEl.className = "product-name";
+    nameEl.textContent = p.name;
+    body.appendChild(nameEl);
+
+    const metaEl = document.createElement("div");
+    metaEl.className = "product-meta";
+    metaEl.textContent = p.specs;
+    body.appendChild(metaEl);
+
+    const bottom = document.createElement("div");
+    bottom.className = "product-bottom";
+
+    const priceEl = document.createElement("div");
+    priceEl.className = "product-price";
+    priceEl.textContent = p.price + "€";
+    bottom.appendChild(priceEl);
+
+    const actions = document.createElement("div");
+    actions.className = "product-actions";
+
+    const btnDetail = document.createElement("button");
+    btnDetail.className = "btn-small ghost";
+    btnDetail.textContent = "Detail";
+    btnDetail.addEventListener("click", (e)=>{
+        e.stopPropagation();
+        openProductModal(p.id);
+    });
+
+    const btnAdd = document.createElement("button");
+    btnAdd.className = "btn-small primary";
+    btnAdd.textContent = "Košík";
+    btnAdd.addEventListener("click", (e)=>{
+        e.stopPropagation();
+        addToCart(p.id);
+        animateAddToCart(card);
+    });
+
+    actions.appendChild(btnDetail);
+    actions.appendChild(btnAdd);
+    bottom.appendChild(actions);
+
+    body.appendChild(bottom);
+    card.appendChild(body);
+
+    card.addEventListener("click", ()=>{
+        openProductModal(p.id);
+    });
+
+    return card;
+}
+
+// RENDER PRODUCTS
+function renderProducts(){
+    const list = getFilteredSortedProducts();
+    const start = (currentPage - 1) * perPage;
+    const pageItems = list.slice(start, start + perPage);
+
+    productsGrid.innerHTML = "";
+    pageItems.forEach(p=>{
+        productsGrid.appendChild(createProductCard(p));
+    });
+
+    renderPagination(list.length);
+}
+
+// HOME SECTIONS
+function renderHomeSections(){
+    bestsellersGrid.innerHTML = "";
+    newGrid.innerHTML = "";
+    premiumGrid.innerHTML = "";
+
+    products.forEach(p=>{
+        if(p.tags?.includes("bestseller")){
+            bestsellersGrid.appendChild(createProductCard(p));
+        }
+        if(p.tags?.includes("new")){
+            newGrid.appendChild(createProductCard(p));
+        }
+        if(p.tags?.includes("premium")){
+            premiumGrid.appendChild(createProductCard(p));
+        }
+    });
+
+    brandsGrid.innerHTML = "";
+    brandsPageGrid.innerHTML = "";
+    brands.forEach(b=>{
+        const card = document.createElement("div");
+        card.className = "brand-card";
+        card.innerHTML = `<strong>${b.name}</strong><span style="font-size:12px;color:var(--text-muted);">${b.country}</span>`;
+        brandsGrid.appendChild(card.cloneNode(true));
+        brandsPageGrid.appendChild(card);
+    });
+
+    reviewsGrid.innerHTML = "";
+    reviews.forEach(r=>{
+        const card = document.createElement("div");
+        card.className = "review-card";
+        card.innerHTML = `<strong>${r.name}</strong><p>${r.text}</p>`;
+        reviewsGrid.appendChild(card);
+    });
+
+    blogGrid.innerHTML = "";
+    blogPageGrid.innerHTML = "";
+    blogPosts.forEach(post=>{
+        const card = document.createElement("div");
+        card.className = "blog-card";
+        card.innerHTML = `
+            <img src="${post.img}" alt="${post.title}">
+            <div class="blog-body">
+                <strong>${post.title}</strong>
+                <p>${post.excerpt}</p>
+            </div>`;
+        blogGrid.appendChild(card.cloneNode(true));
+        blogPageGrid.appendChild(card);
+    });
+
+    serviceGrid.innerHTML = "";
+    serviceCards.forEach(s=>{
+        const card = document.createElement("div");
+        card.className = "service-card";
+        card.innerHTML = `<strong>${s.title}</strong><p>${s.text}</p><p style="font-weight:600;">${s.price}</p>`;
+        serviceGrid.appendChild(card);
+    });
+
+    compareTable.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Typ</th>
+                    <th>Cena</th>
+                    <th>Vhodné na</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alpine Trail Carbon Pro</td>
+                    <td>Horský</td>
+                    <td>2 499€</td>
+                    <td>Traily, Alpy, bikepark</td>
+                </tr>
+                <tr>
+                    <td>Road Aero SL Disc</td>
+                    <td>Cestný</td>
+                    <td>2 199€</td>
+                    <td>Asfalt, preteky, dlhé výjazdy</td>
+                </tr>
+                <tr>
+                    <td>Gravel Explorer GX</td>
+                    <td>Gravel</td>
+                    <td>1 699€</td>
+                    <td>Šotolina, cesty, bikepacking</td>
+                </tr>
+            </tbody>
+        </table>
+    `;
+}
+
+// FAVORITES
+function toggleFavorite(id){
+    if(favorites.includes(id)){
+        favorites = favorites.filter(f=>f !== id);
+    }else{
+        favorites.push(id);
+    }
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    updateFavCount();
+    renderProducts();
+    renderHomeSections();
+    renderFavorites();
+}
+
+function updateFavCount(){
+    favCount.textContent = favorites.length;
+}
+
+function renderFavorites(){
+    favoritesGrid.innerHTML = "";
+    const favProducts = products.filter(p=>favorites.includes(p.id));
+    if(favProducts.length === 0){
+        favoritesGrid.innerHTML = "<p style='font-size:13px;color:var(--text-muted);'>Zatiaľ nemáš žiadne obľúbené bicykle.</p>";
+        return;
+    }
+    favProducts.forEach(p=>{
+        favoritesGrid.appendChild(createProductCard(p));
+    });
+}
+
+favBtn.addEventListener("click", ()=>{
+    setView("favorites");
+});
+
+// CART
+function addToCart(id){
+    const existing = cart.find(item=>item.id === id);
+    if(existing){
+        existing.qty += 1;
+    }else{
+        cart.push({id, qty:1});
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartUI();
+    showToast("Pridané do košíka");
+}
+
+function removeFromCart(id){
+    cart = cart.filter(item=>item.id !== id);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartUI();
+}
+
+function changeQty(id, delta){
+    const item = cart.find(i=>i.id === id);
+    if(!item) return;
+    item.qty += delta;
+    if(item.qty <= 0){
+        removeFromCart(id);
+    }else{
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartUI();
+    }
+}
+
+function updateCartUI(){
+    cartList.innerHTML = "";
+    let subtotal = 0;
+    cart.forEach(item=>{
+        const p = products.find(pr=>pr.id === item.id);
+        if(!p) return;
+        const line = p.price * item.qty;
+        subtotal += line;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+
+        const imgWrap = document.createElement("div");
+        imgWrap.className = "cart-item-img";
+        const img = document.createElement("img");
+        img.src = p.img;
+        imgWrap.appendChild(img);
+
+        const main = document.createElement("div");
+        main.className = "cart-item-main";
+
+        const name = document.createElement("div");
+        name.className = "cart-item-name";
+        name.textContent = p.name;
+
+        const meta = document.createElement("div");
+        meta.className = "cart-item-meta";
+        meta.textContent = p.type === "mountain" ? "Horský" :
+                           p.type === "road" ? "Cestný" :
+                           p.type === "gravel" ? "Gravel" : "Mestský";
+
+        const actions = document.createElement("div");
+        actions.className = "cart-item-actions";
+
+        const qtyControls = document.createElement("div");
+        qtyControls.className = "qty-controls";
+
+        const minus = document.createElement("button");
+        minus.className = "qty-btn";
+        minus.textContent = "-";
+        minus.addEventListener("click", ()=>changeQty(p.id, -1));
+
+        const qty = document.createElement("span");
+        qty.textContent = item.qty;
+
+        const plus = document.createElement("button");
+        plus.className = "qty-btn";
+        plus.textContent = "+";
+        plus.addEventListener("click", ()=>changeQty(p.id, 1));
+
+        qtyControls.appendChild(minus);
+        qtyControls.appendChild(qty);
+        qtyControls.appendChild(plus);
+
+        const linePrice = document.createElement("div");
+        linePrice.textContent = line + "€";
+
+        actions.appendChild(qtyControls);
+        actions.appendChild(linePrice);
+
+        main.appendChild(name);
+        main.appendChild(meta);
+        main.appendChild(actions);
+
+        row.appendChild(imgWrap);
+        row.appendChild(main);
+
+        cartList.appendChild(row);
+    });
+
+    cartSubtotal.textContent = subtotal + "€";
+    cartTotal.textContent = subtotal + "€";
+    cartCount.textContent = cart.reduce((sum,i)=>sum + i.qty, 0);
+}
+
+cartBtn.addEventListener("click", ()=>{
+    cartSidebar.classList.add("open");
+});
+
+cartCloseBtn.addEventListener("click", ()=>{
+    cartSidebar.classList.remove("open");
+});
+
+// PRODUCT MODAL
+function openProductModal(id){
+    const p = products.find(pr=>pr.id === id);
+    if(!p) return;
+    currentModalProductId = id;
+    modalImg.src = p.img;
+    modalTitle.textContent = p.name;
+    modalType.textContent = p.type === "mountain" ? "Horský bicykel" :
+                            p.type === "road" ? "Cestný bicykel" :
+                            p.type === "gravel" ? "Gravel bicykel" : "Mestský bicykel";
+    modalPrice.textContent = p.price + "€";
+    modalSpecs.textContent = p.specs;
+    modalFavBtn.textContent = favorites.includes(id) ? "❤️ V obľúbených" : "❤️ Obľúbený";
+    modalBackdrop.classList.add("open");
+}
+
+function closeProductModal(){
+    modalBackdrop.classList.remove("open");
+    currentModalProductId = null;
+}
+
+modalBackdrop.addEventListener("click", (e)=>{
+    if(e.target === modalBackdrop){
+        closeProductModal();
+    }
+});
+
+modalCloseText.addEventListener("click", closeProductModal);
+
+modalAddCartBtn.addEventListener("click", ()=>{
+    if(currentModalProductId){
+        addToCart(currentModalProductId);
+    }
+});
+
+modalFavBtn.addEventListener("click", ()=>{
+    if(currentModalProductId){
+        toggleFavorite(currentModalProductId);
+        modalFavBtn.textContent = favorites.includes(currentModalProductId) ? "❤️ V obľúbených" : "❤️ Obľúbený";
+    }
+});
+
+// TOAST
+let toastTimeout = null;
+function showToast(message){
+    toastText.textContent = message;
+    toast.classList.add("show");
+    if(toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(()=>{
+        toast.classList.remove("show");
+    }, 1800);
+}
+
+// ANIM ADD TO CART
+function animateAddToCart(card){
+    card.style.transform = "scale(0.97)";
+    setTimeout(()=>{
+        card.style.transform = "";
+    }, 150);
+}
+
+// CHECKOUT FLOW (3 kroky)
+function renderCheckoutStep(){
+    document.querySelectorAll(".checkout-step").forEach(stepEl=>{
+        const step = Number(stepEl.dataset.step);
+        stepEl.classList.toggle("active", step === checkoutStep);
+    });
+
+    if(checkoutStep === 1){
+        checkoutBody.innerHTML = `
+            <div class="checkout-row">
+                <label>Meno a priezvisko</label>
+                <input type="text" id="coName" placeholder="Tvoje meno">
+            </div>
+            <div class="checkout-row">
+                <label>Email</label>
+                <input type="email" id="coEmail" placeholder="Tvoj email">
+            </div>
+            <div class="checkout-row">
+                <label>Adresa</label>
+                <input type="text" id="coAddress" placeholder="Ulica, mesto">
+            </div>
+        `;
+    }else if(checkoutStep === 2){
+        checkoutBody.innerHTML = `
+            <div class="checkout-row">
+                <label>Spôsob doručenia</label>
+                <select id="coShipping">
+                    <option>Kuriér (zdarma)</option>
+                    <option>Osobný odber</option>
+                </select>
+            </div>
+            <div class="checkout-row">
+                <label>Poznámka pre kuriéra</label>
+                <input type="text" id="coNote" placeholder="Voliteľné">
+            </div>
+        `;
+    }else if(checkoutStep === 3){
+        checkoutBody.innerHTML = `
+            <div class="checkout-row">
+                <label>Spôsob platby</label>
+                <select id="coPayment">
+                    <option>Karta (demo)</option>
+                    <option>Dobierka</option>
+                </select>
+            </div>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:4px;">
+                Platba je len demo 💳 — nič sa reálne neúčtuje.
+            </p>
+        `;
+    }
+}
+
+checkoutPrevBtn.addEventListener("click", ()=>{
+    if(checkoutStep > 1){
+        checkoutStep--;
+        renderCheckoutStep();
+    }
+});
+
+checkoutNextBtn.addEventListener("click", ()=>{
+    if(checkoutStep < 3){
+        checkoutStep++;
+        renderCheckoutStep();
+    }else{
+        if(cart.length === 0){
+            showToast("Košík je prázdny");
+            return;
+        }
+        const orderId = "ORDER-" + Math.floor(Math.random()*100000);
+        orders.push({id:orderId, total:cart.reduce((s,i)=>s + products.find(p=>p.id===i.id).price*i.qty,0)});
+        localStorage.setItem("orders", JSON.stringify(orders));
+        cart = [];
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartUI();
+        showToast("Objednávka dokončená 🎉");
+        checkoutBackdrop.classList.remove("open");
+        renderAccount();
+    }
+});
+
+checkoutCloseText.addEventListener("click", ()=>{
+    checkoutBackdrop.classList.remove("open");
+});
+
+document.getElementById("checkoutBtn").addEventListener("click", ()=>{
+    if(cart.length === 0){
+        showToast("Košík je prázdny");
+        return;
+    }
+    checkoutStep = 1;
+    renderCheckoutStep();
+    checkoutBackdrop.classList.add("open");
+});
+
+// ACCOUNT
+function renderAccount(){
+    if(savedAddress){
+        savedAddressText.textContent = "Uložená adresa: " + savedAddress;
+    }else{
+        savedAddressText.textContent = "Zatiaľ nemáš uloženú adresu.";
+    }
+
+    ordersList.innerHTML = "";
+    if(orders.length === 0){
+        ordersList.innerHTML = "<li>Žiadne objednávky (demo).</li>";
+    }else{
+        orders.forEach(o=>{
+            const li = document.createElement("li");
+            li.textContent = `${o.id} — ${o.total}€`;
+            ordersList.appendChild(li);
+        });
+    }
+}
+
+saveAddressBtn.addEventListener("click", ()=>{
+    const val = accountAddressInput.value.trim();
+    if(!val){
+        showToast("Zadaj adresu");
+        return;
+    }
+    savedAddress = val;
+    localStorage.setItem("savedAddress", savedAddress);
+    renderAccount();
+    showToast("Adresa uložená");
+});
+
+// INIT
+function init(){
+    applyTheme();
+    updateCartUI();
+    updateFavCount();
+    renderProducts();
+    renderHomeSections();
+    renderFavorites();
+    renderAccount();
+}
+init();
+</script>
+
+</body>
 </html>
