@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="sk">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Prezentácia zadaní pre študentov na HTML, CSS a základný frontend projekt."
+		/>
+		<title>Zadania pre študentov</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<nav class="site-nav" aria-label="Hlavná navigácia">
+			<a class="site-nav-brand" href="index.html">HTML a CSS jednoducho</a>
+			<div class="site-nav-links">
+				<a href="index.html">Domov</a>
+				<a href="sites.html">Študentské stránky</a>
+				<a href="zadania.html" aria-current="page">Zadania</a>
+			</div>
+		</nav>
+
+		<header class="hero">
+			<p class="eyebrow">Praktické zadania</p>
+			<h1>Projektové zadania pre prvákov</h1>
+			<p class="lead">
+				Vyber si jednu z troch možností a priprav web, ktorý bude vyzerať ako
+				reálny mini projekt. Cieľom je precvičiť HTML štruktúru, CSS layout,
+				prácu so sekciami a pri pokročilejších variantoch aj základnú
+				interaktivitu.
+			</p>
+
+			<nav class="quick-nav" aria-label="Obsah zadaní">
+				<a href="#moznosti">Možnosti A, B, C</a>
+				<a href="#a">Možnosť A</a>
+				<a href="#b">Možnosť B</a>
+				<a href="#c">Možnosť C</a>
+				<a href="#hodnotenie">Checklist a body</a>
+			</nav>
+		</header>
+
+		<main class="page">
+			<section class="card accent" id="moznosti">
+				<div class="section-heading">
+					<p class="section-index">01</p>
+					<div>
+						<h2>Vyber si svoju úroveň</h2>
+						<p>
+							Zadania sú rozdelené do troch úrovní. Ak si si ešte neistý v HTML
+							a CSS, začni možnosťou A. Ak už chceš skúsiť aj JavaScript alebo
+							vlastný nápad, prejdi na B alebo C.
+						</p>
+					</div>
+				</div>
+
+				<div class="assignment-grid">
+					<article class="assignment-card">
+						<p class="assignment-badge">Možnosť A</p>
+						<h3>Mini e-shop landing page</h3>
+						<p>
+							Jedna moderná produktová stránka pre jeden produkt. Fokus na
+							layout, obsah, sekcie a príjemný vizuál.
+						</p>
+					</article>
+
+					<article class="assignment-card">
+						<p class="assignment-badge">Možnosť B</p>
+						<h3>Produktová stránka + interaktivita</h3>
+						<p>
+							Klasická produktová stránka rozšírená o galériu, výber variantu a
+							tlačidlo do košíka s jednoduchou JS logikou.
+						</p>
+					</article>
+
+					<article class="assignment-card">
+						<p class="assignment-badge">Možnosť C</p>
+						<h3>Vlastný mini startup projekt</h3>
+						<p>
+							Vlastná téma, vlastný obsah a aspoň jedna interaktívna časť.
+							Môžeš urobiť e-shop, portfolio, reštauráciu alebo app landing.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="card" id="a">
+				<div class="section-heading">
+					<p class="section-index">02</p>
+					<div>
+						<h2>Možnosť A: Mini e-shop landing page</h2>
+						<p>
+							Ideálne zadanie po základoch HTML a CSS. Cieľ je vytvoriť jednu
+							prehľadnú a peknú stránku, ktorá pripomína reálny produktový web.
+						</p>
+					</div>
+				</div>
+
+				<div class="example-grid">
+					<article>
+						<h3>Čo musí stránka obsahovať</h3>
+						<ul class="feature-list feature-list-strong">
+							<li>Header s názvom e-shopu a jednoduchým menu.</li>
+							<li>Hero sekciu s veľkým nadpisom, popisom a CTA tlačidlom.</li>
+							<li>Produktovú časť s obrázkom, názvom, cenou a popisom.</li>
+							<li>Sekciu výhod aspoň v 3 bodoch.</li>
+							<li>Footer s kontaktom, fake emailom a copyright textom.</li>
+						</ul>
+					</article>
+
+					<article>
+						<h3>Nápady na produkt</h3>
+						<div class="tag-list" aria-label="Nápady na produkty">
+							<span>gaming myš</span>
+							<span>slúchadlá</span>
+							<span>sneakers</span>
+							<span>iPhone</span>
+							<span>výberová káva</span>
+							<span>meme produkt</span>
+						</div>
+						<div class="preview-box">
+							<strong>Cieľ projektu</strong>
+							<p>
+								Stránka má pôsobiť ako reálny landing page. Dôležité sú medzery,
+								kontrast, poradie sekcií a čitateľnosť.
+							</p>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section class="card accent" id="b">
+				<div class="section-heading">
+					<p class="section-index">03</p>
+					<div>
+						<h2>Možnosť B: Produktová stránka + interaktivita</h2>
+						<p>
+							Pre študentov, ktorí už zvládnu základnú štruktúru a chcú si
+							vyskúšať prvé JavaScript správanie na stránke.
+						</p>
+					</div>
+				</div>
+
+				<div class="example-grid">
+					<article>
+						<h3>Povinné časti</h3>
+						<ul class="feature-list feature-list-strong">
+							<li>Galéria obrázkov produktu s kliknutím na náhľad.</li>
+							<li>Tlačidlo Pridať do košíka s alertom alebo textovou správou.</li>
+							<li>Výber variantu produktu, napr. farba alebo veľkosť.</li>
+							<li>Produktový detail s cenou, popisom a výhodami.</li>
+						</ul>
+					</article>
+
+					<article>
+						<h3>Čo sa tým precvičí</h3>
+						<div class="callout-list">
+							<div>
+								<strong>DOM a onclick</strong>
+								<p>Zmena obrázka, textu alebo stavu po kliknutí.</p>
+							</div>
+							<div>
+								<strong>Premenné a podmienky</strong>
+								<p>Jednoduchá logika pre varianty, cenu alebo počet kusov.</p>
+							</div>
+							<div>
+								<strong>Kompletnejší UI flow</strong>
+								<p>Už to nie je len statická stránka, ale malý produktový zážitok.</p>
+							</div>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section class="card" id="c">
+				<div class="section-heading">
+					<p class="section-index">04</p>
+					<div>
+						<h2>Možnosť C: Vlastný projekt</h2>
+						<p>
+							Najvoľnejšia varianta pre šikovnejších študentov. Téma je na nich,
+							ale výstup musí stále vyzerať ako premyslený webový projekt.
+						</p>
+					</div>
+				</div>
+
+				<div class="showcase-grid">
+					<article>
+						<h3>Príklady tém</h3>
+						<ul class="feature-list">
+							<li>mini e-shop</li>
+							<li>osobné portfolio</li>
+							<li>reštaurácia alebo kaviareň</li>
+							<li>fake startup landing page</li>
+							<li>jednoduchá app prezentácia</li>
+						</ul>
+					</article>
+
+					<article>
+						<h3>Minimálne požiadavky</h3>
+						<ul class="feature-list">
+							<li>aspoň 3 samostatné sekcie</li>
+							<li>vlastný obsah a vlastný vizuál</li>
+							<li>aspoň 1 interaktívny prvok v JavaScripte</li>
+							<li>zreteľné CTA alebo hlavný cieľ stránky</li>
+						</ul>
+					</article>
+
+					<article>
+						<h3>Bonus prvky</h3>
+						<ul class="feature-list">
+							<li>animácie pri načítaní</li>
+							<li>responzivita pre mobil</li>
+							<li>dark mode</li>
+							<li>vlastné ilustrácie alebo ikony</li>
+						</ul>
+					</article>
+				</div>
+			</section>
+
+			<section class="card accent" id="hodnotenie">
+				<div class="section-heading">
+					<p class="section-index">05</p>
+					<div>
+						<h2>Checklist a hodnotenie</h2>
+						<p>
+							Toto môžeš použiť aj ako rýchly systém bodovania alebo ako zoznam,
+							podľa ktorého si študenti sami skontrolujú, či majú hotovo.
+						</p>
+					</div>
+				</div>
+
+				<div class="example-grid">
+					<article>
+						<h3>Základný checklist</h3>
+						<ul class="feature-list checklist-list">
+							<li>Stránka má jasný nadpis a fungujúcu štruktúru.</li>
+							<li>Obsah je rozdelený do sekcií a je ľahko čitateľný.</li>
+							<li>Použité sú farby, medzery a konzistentné fonty.</li>
+							<li>Sú tam tlačidlá alebo odkazy, ktoré dávajú zmysel.</li>
+							<li>Projekt vyzerá ako reálny web, nie len ako zoznam textov.</li>
+						</ul>
+					</article>
+
+					<article>
+						<h3>Návrh bodovania</h3>
+						<div class="score-list">
+							<div>
+								<strong>1 bod</strong>
+								<p>HTML štruktúra a povinné sekcie.</p>
+							</div>
+							<div>
+								<strong>1 bod</strong>
+								<p>CSS vizuál, medzery, farby a čitateľnosť.</p>
+							</div>
+							<div>
+								<strong>1 bod</strong>
+								<p>Layout cez flexbox alebo grid.</p>
+							</div>
+							<div>
+								<strong>1 bod</strong>
+								<p>Kreativita a celkový dojem.</p>
+							</div>
+							<div>
+								<strong>Bonus</strong>
+								<p>Hover efekty, responzivita, animácia alebo JS.</p>
+							</div>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section class="card" id="priebeh">
+				<div class="section-heading">
+					<p class="section-index">06</p>
+					<div>
+						<h2>Ako si rozdeliť hodinu</h2>
+						<p>
+							Jednoduchý flow, aby študenti vedeli, čo robia na začiatku,
+							počas práce aj na konci prezentácie.
+						</p>
+					</div>
+				</div>
+
+				<div class="timeline-grid">
+					<article class="timeline-step">
+						<p class="assignment-badge">10 min</p>
+						<h3>Vysvetlenie zadania</h3>
+						<p>Ukážka inšpirácie, pravidlá a čo má byť odovzdané.</p>
+					</article>
+
+					<article class="timeline-step">
+						<p class="assignment-badge">40 min</p>
+						<h3>Samostatná práca</h3>
+						<p>Študenti kódujú, ty priebežne chodíš, radíš a kontroluješ progres.</p>
+					</article>
+
+					<article class="timeline-step">
+						<p class="assignment-badge">10 min</p>
+						<h3>Ukážky a feedback</h3>
+						<p>Krátke prezentácie, pochvala za silné stránky a 1 tip na zlepšenie.</p>
+					</article>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>
