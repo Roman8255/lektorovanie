@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="sk">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ukazka Scroll</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				margin: 0;
+				font-family: Arial, sans-serif;
+				line-height: 1.6;
+				color: #1f2937;
+				background: linear-gradient(180deg, #f8fafc 0%, #dbeafe 100%);
+			}
+
+			.wrapper {
+				width: min(900px, calc(100% - 32px));
+				margin: 0 auto;
+			}
+
+			.hero,
+			.target-section {
+				padding: 64px 0;
+			}
+
+			.hero {
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+			}
+
+			.card,
+			.target-box {
+				background-color: rgba(255, 255, 255, 0.92);
+				border: 1px solid rgba(148, 163, 184, 0.35);
+				border-radius: 24px;
+				padding: 28px;
+				box-shadow: 0 20px 45px rgba(15, 23, 42, 0.1);
+			}
+
+			h1,
+			h2 {
+				margin-top: 0;
+			}
+
+			.actions {
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+				margin-top: 24px;
+			}
+
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 46px;
+				padding: 12px 18px;
+				border: 0;
+				border-radius: 999px;
+				background-color: #2563eb;
+				color: white;
+				font-weight: 700;
+				text-decoration: none;
+				cursor: pointer;
+			}
+
+			.button.secondary {
+				background-color: #0f172a;
+			}
+
+			.spacer {
+				height: 420px;
+			}
+
+			code {
+				padding: 2px 8px;
+				border-radius: 999px;
+				background-color: #e2e8f0;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="hero">
+			<div class="wrapper">
+				<div class="card">
+					<h1>Ukazka scrollu cez ID</h1>
+					<p>
+						Toto je jednoducha stranka, kde vidis dva sposoby scrollovania na
+						konkretnu cast stranky.
+					</p>
+
+					<p>
+						1. Odkaz pouzije <code>href="#scroll"</code> a presunie ta na prvok,
+						ktory ma <code>id="scroll"</code>.
+					</p>
+
+					<p>
+						2. Druhy odkaz je nastylovany ako button, ale funguje rovnako cez
+						<a>href="#scroll"</a> bez scriptu.
+					</p>
+
+					<div class="actions">
+						<a class="button" href="#scroll">Scroll cez href a id</a>
+						<a class="button secondary" href="#scroll" role="button">
+							Scroll ako button bez scriptu
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="wrapper spacer"></div>
+
+		<section class="target-section" id="scroll">
+			<div class="wrapper">
+				<div class="target-box">
+					<h2>Sem ta presunulo</h2>
+					<p>
+						Tento blok ma nastavene <div>id="scroll"</div>, preto na neho vie
+						stranka preskocit cez anchor link aj cez button.
+					</p>
+				</div>
+			</div>
+		</section>
+
+	</body>
+</html>
