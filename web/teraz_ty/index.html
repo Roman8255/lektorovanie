@@ -3,26 +3,134 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moja prva stranka</title>
+    <title>BeanBox | Vyberova kava na doma</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Tu je nadpis</h1>
+    <header class="site-header">
+      <div class="wrapper header-layout">
+        <a class="brand" href="#hero">BeanBox</a>
 
-      <p>Tu pis text do prveho odseku.</p>
+        <nav class="site-nav" aria-label="Hlavne menu">
+          <a href="#produkt">Produkt</a>
+          <a href="#vyhody">Vyhody</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+      </div>
+    </header>
 
-      <h2>Tu je mensi nadpis</h2>
+    <main>
+      <section class="hero" id="hero">
+        <div class="wrapper hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Limitovana edicia zrniek</p>
+            <h1>Kava, pri ktorej sa rano nezacina kompromisom.</h1>
+            <p class="hero-text">
+              BeanBox Aurora je vyberova kava s cokoladovym telom, jemnou
+              aciditou a sladkou vonou karamelu. Navrhnuta pre ludi, ktori chcu,
+              aby aj bezne rano posobilo o trochu lepsie.
+            </p>
 
-      <p>Tu mozu studenti pisat dalsi text alebo skusat vlastne HTML tagy.</p>
+            <div class="hero-actions">
+              <a class="button primary" href="kupit.html">Kupit za 14,90 EUR</a>
+              <a class="button secondary" href="#vyhody">Preco BeanBox</a>
+            </div>
+          </div>
 
-      <a href="#">Tu moze byt odkaz</a>
+          <div class="hero-card" aria-label="Vizual produktu">
+            <div class="hero-badge">Free shipping nad 30 EUR</div>
+            <img
+              src="coffee-bag.svg"
+              alt="Balicek vyberovej kavy BeanBox Aurora"
+            />
+          </div>
+        </div>
+      </section>
 
-      <ul>
-        <li>Tu je prva polozka</li>
-        <li>Tu je druha polozka</li>
-        <li>Tu je tretia polozka</li>
-      </ul>
-    </div>
+      <section class="product-section" id="produkt">
+        <div class="wrapper product-grid">
+          <div class="product-image-card">
+            <img
+              src="coffee-bag.svg"
+              alt="Produkt BeanBox Aurora"
+            />
+          </div>
+
+          <div class="product-copy">
+            <p class="section-label">Odporucany produkt</p>
+            <h2>BeanBox Aurora 250 g</h2>
+            <p class="price">14,90 EUR</p>
+            <p>
+              Zmes 100 % arabiky z Brazilie a Etiopie. Prazena tak, aby fungovala
+              vo french presse, moka kanvicke aj v domacom espresso stroji.
+              Chutovy profil stavia na tmavej cokolade, lieskovcoch a jemnom
+              citrusovom zavere.
+            </p>
+            <p>
+              Ak chces jeden produkt, ktory vyzera dobre, vonia vyborne a realne
+              sprijemni kazdy den, toto je on.
+            </p>
+            <a class="button primary" href="kupit.html">Prejst na objednavku</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="benefits-section" id="vyhody">
+        <div class="wrapper">
+          <div class="section-heading">
+            <p class="section-label">Preco si ju ludia oblubia</p>
+            <h2>Tri dovody, preco BeanBox neostane len dalsou kavou v policke.</h2>
+          </div>
+
+          <div class="benefits-grid">
+            <article class="benefit-card">
+              <span class="benefit-number">01</span>
+              <h3>Vyrazna chut bez horkosti</h3>
+              <p>
+                Prazenie je nastavene tak, aby chut bola plna, ale stale cista a
+                prirodzene sladkastna.
+              </p>
+            </article>
+
+            <article class="benefit-card">
+              <span class="benefit-number">02</span>
+              <h3>Funguje doma aj v kancelarii</h3>
+              <p>
+                Zrnkova aj mleta verzia su vhodne pre viac sposobov pripravy, takze
+                sa nemusis prisposobovat produktu.
+              </p>
+            </article>
+
+            <article class="benefit-card">
+              <span class="benefit-number">03</span>
+              <h3>Balenie, ktore vyzera ako darcek</h3>
+              <p>
+                Minimalisticky dizajn, matny povrch a zlate detaily robia z jednej
+                kavy aj pekny maly gift.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="kontakt">
+      <div class="wrapper footer-layout">
+        <div>
+          <p class="footer-title">BeanBox</p>
+          <p>Kava pre ludi, ktori chcu lepsie rana.</p>
+        </div>
+
+        <div>
+          <p class="footer-title">Kontakt</p>
+          <a href="mailto:ahoj@beanbox-shop.sk">ahoj@beanbox-shop.sk</a>
+        </div>
+
+        <div>
+          <p class="footer-title">Copyright</p>
+          <p>&copy; 2026 BeanBox. Vsetky prava vyhradene.</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

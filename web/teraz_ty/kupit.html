@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BeanBox | Objednavka</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrapper header-layout">
+        <a class="brand" href="index.html#hero">BeanBox</a>
+
+        <nav class="site-nav" aria-label="Hlavne menu">
+          <a href="index.html#produkt">Produkt</a>
+          <a href="index.html#vyhody">Vyhody</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="checkout-main">
+      <div class="wrapper checkout-grid">
+        <section class="checkout-panel" aria-labelledby="checkout-heading">
+          <p class="section-label">Dokoncenie objednavky</p>
+          <h1 id="checkout-heading">Objednaj si BeanBox Aurora.</h1>
+          <p>
+            Toto je ukazkova podstranka, kde sa produkt da akoze kupit. Obsahuje
+            formular, vyber dopravy a zhrnutie objednavky ako na skutocnom e-shope.
+          </p>
+
+          <form class="checkout-form">
+            <div class="form-row">
+              <div class="field">
+                <label for="meno">Meno a priezvisko</label>
+                <input id="meno" name="meno" type="text" placeholder="Jan Novak" />
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="jan@priklad.sk"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="telefon">Telefon</label>
+                <input id="telefon" name="telefon" type="tel" placeholder="0900 123 456" />
+              </div>
+
+              <div class="field">
+                <label for="mnozstvo">Mnozstvo</label>
+                <select id="mnozstvo" name="mnozstvo">
+                  <option>1 balik</option>
+                  <option>2 baliky</option>
+                  <option>3 baliky</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="adresa">Adresa dorucenia</label>
+              <textarea
+                id="adresa"
+                name="adresa"
+                placeholder="Ulica 123, 010 01 Zilina"
+              ></textarea>
+            </div>
+
+            <fieldset class="delivery-options">
+              <legend>Sposob dorucenia</legend>
+
+              <label class="delivery-choice" for="kurier">
+                <input id="kurier" name="doprava" type="radio" checked />
+                <span>
+                  <strong>Kurier domov</strong>
+                  Dorucenie do 48 hodin za 3,90 EUR.
+                </span>
+              </label>
+
+              <label class="delivery-choice" for="packeta">
+                <input id="packeta" name="doprava" type="radio" />
+                <span>
+                  <strong>Vydajne miesto</strong>
+                  Najlacnejsia moznost za 2,50 EUR.
+                </span>
+              </label>
+            </fieldset>
+
+            <a class="button primary" href="#">Odoslat objednavku</a>
+          </form>
+        </section>
+
+        <aside class="summary-panel" aria-label="Zhrnutie objednavky">
+          <img src="coffee-bag.svg" alt="Balicek kavy BeanBox Aurora" />
+          <p class="section-label">Zhrnutie</p>
+          <h2>BeanBox Aurora 250 g</h2>
+          <p>
+            Jedna vyberova kava, jeden cisty produktovy detail a jednoducha cesta
+            k objednavke.
+          </p>
+
+          <div class="summary-list">
+            <div class="summary-item">
+              <span>Produkt</span>
+              <strong>14,90 EUR</strong>
+            </div>
+            <div class="summary-item">
+              <span>Doprava</span>
+              <strong>3,90 EUR</strong>
+            </div>
+            <div class="summary-total">
+              <span>Spolu</span>
+              <strong>18,80 EUR</strong>
+            </div>
+          </div>
+
+          <p>Platba kartou, Apple Pay alebo na dobierku. Vsetko len ako demo.</p>
+          <a class="back-link" href="index.html">Spat na landing page</a>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer" id="kontakt">
+      <div class="wrapper footer-layout">
+        <div>
+          <p class="footer-title">BeanBox</p>
+          <p>Kava pre ludi, ktori chcu lepsie rana.</p>
+        </div>
+
+        <div>
+          <p class="footer-title">Kontakt</p>
+          <a href="mailto:ahoj@beanbox-shop.sk">ahoj@beanbox-shop.sk</a>
+        </div>
+
+        <div>
+          <p class="footer-title">Copyright</p>
+          <p>&copy; 2026 BeanBox. Vsetky prava vyhradene.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
