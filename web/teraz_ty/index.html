@@ -1,28 +1,1004 @@
 <!DOCTYPE html>
 <html lang="sk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moja prva stranka</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Tu je nadpis</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>ElektroPro – Profesionálna elektrotechnika</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent: #f97316;
+            --bg: #0f172a;
+            --bg-light: #111827;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --card-bg: #020617;
+            --radius: 14px;
+            --shadow-soft: 0 18px 45px rgba(15,23,42,0.75);
+        }
 
-      <p>Tu pis text do prveho odseku.</p>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-      <h2>Tu je mensi nadpis</h2>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-      <p>Tu mozu studenti pisat dalsi text alebo skusat vlastne HTML tagy.</p>
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-      <a href="#">Tu moze byt odkaz</a>
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-      <ul>
-        <li>Tu je prva polozka</li>
-        <li>Tu je druha polozka</li>
-        <li>Tu je tretia polozka</li>
-      </ul>
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.75), transparent);
+            border-bottom: 1px solid rgba(148,163,184,0.15);
+        }
+
+        .nav {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 30% 0, #f97316, #2563eb 55%, #0f172a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(37,99,235,0.7);
+        }
+
+        .logo-icon span {
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .logo-text-main {
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+        }
+
+        .logo-text-sub {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .nav-links a {
+            position: relative;
+            padding-bottom: 0.2rem;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #f97316, #2563eb);
+            transition: width 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e5e7eb;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-phone {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .nav-phone strong {
+            color: #e5e7eb;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 0.55rem 1.3rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(148,163,184,0.4);
+            background: rgba(15,23,42,0.8);
+            color: #e5e7eb;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            border: none;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 14px 35px rgba(37,99,235,0.7);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 45px rgba(37,99,235,0.85);
+            filter: brightness(1.05);
+        }
+
+        .btn-outline:hover {
+            background: rgba(15,23,42,0.95);
+        }
+
+        main {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* HERO */
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 3rem;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.4);
+            background: rgba(15,23,42,0.85);
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-bottom: 1.1rem;
+        }
+
+        .hero-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 0, #f97316, #22c55e);
+            box-shadow: 0 0 12px rgba(34,197,94,0.9);
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 3vw + 1rem, 3.1rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(120deg, #60a5fa, #f97316);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 0.98rem;
+            color: var(--muted);
+            max-width: 32rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .hero-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-highlight {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .hero-highlight-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            background: rgba(37,99,235,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #60a5fa;
+            font-size: 0.75rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            align-items: center;
+            margin-bottom: 1.6rem;
+        }
+
+        .hero-note {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .hero-note span {
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .hero-stat {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-size: 1.1rem;
+            color: #e5e7eb;
+        }
+
+        /* HERO IMAGE */
+
+        .hero-media {
+            position: relative;
+        }
+
+        .hero-card {
+            position: relative;
+            border-radius: 26px;
+            padding: 1.4rem;
+            background: radial-gradient(circle at top left, rgba(37,99,235,0.25), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(248,113,113,0.18), transparent 55%),
+                        #020617;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card-title {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .hero-card-title strong {
+            display: block;
+            color: #e5e7eb;
+            font-size: 0.95rem;
+        }
+
+        .hero-card-badges {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .hero-card-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.4);
+            background: rgba(15,23,42,0.9);
+            color: var(--muted);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 0.9rem;
+            align-items: stretch;
+        }
+
+        .hero-product-main {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            background: radial-gradient(circle at top, #1f2937, #020617);
+            border: 1px solid rgba(148,163,184,0.35);
+        }
+
+        .hero-product-main img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            filter: saturate(1.1) contrast(1.05);
+        }
+
+        .hero-product-label {
+            position: absolute;
+            left: 0.9rem;
+            bottom: 0.9rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(15,23,42,0.9);
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        .hero-product-label span {
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        .hero-product-side {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 0.9rem;
+        }
+
+        .hero-mini-card {
+            border-radius: 16px;
+            padding: 0.7rem 0.8rem;
+            background: rgba(15,23,42,0.95);
+            border: 1px solid rgba(148,163,184,0.35);
+            display: flex;
+            gap: 0.7rem;
+            align-items: center;
+        }
+
+        .hero-mini-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 30% 0, #22c55e, #16a34a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .hero-mini-icon.orange {
+            background: radial-gradient(circle at 30% 0, #f97316, #ea580c);
+        }
+
+        .hero-mini-text-title {
+            font-size: 0.8rem;
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        .hero-mini-text-sub {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        .hero-floating-tag {
+            position: absolute;
+            right: -0.3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px 0 0 999px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            font-size: 0.7rem;
+            color: #022c22;
+            font-weight: 600;
+            box-shadow: 0 12px 30px rgba(22,163,74,0.7);
+        }
+
+        .hero-glow {
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 10% 0, rgba(59,130,246,0.25), transparent 55%),
+                radial-gradient(circle at 90% 100%, rgba(248,113,113,0.25), transparent 55%);
+            opacity: 0.7;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        /* SEKCIA PRODUKTOV */
+
+        .section {
+            margin-top: 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 0.85rem;
+            color: var(--muted);
+            max-width: 26rem;
+        }
+
+        .section-link {
+            font-size: 0.8rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .section-link span {
+            font-size: 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.4rem;
+        }
+
+        .product-card {
+            border-radius: var(--radius);
+            background: radial-gradient(circle at top, rgba(37,99,235,0.18), transparent 55%),
+                        #020617;
+            border: 1px solid rgba(148,163,184,0.35);
+            padding: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(15,23,42,0.9);
+            border-color: rgba(96,165,250,0.9);
+        }
+
+        .product-image {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #020617;
+            border: 1px solid rgba(30,64,175,0.7);
+        }
+
+        .product-image img {
+            height: 150px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-category {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .product-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .product-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #e5e7eb;
+        }
+
+        .product-price span {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        .product-cta {
+            margin-top: 0.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-cta button {
+            flex: 1;
+            font-size: 0.8rem;
+            padding: 0.45rem 0.7rem;
+        }
+
+        .product-stock {
+            font-size: 0.7rem;
+            color: #22c55e;
+        }
+
+        /* SLUŽBY / PREČO MY */
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.4rem;
+        }
+
+        .feature-card {
+            border-radius: var(--radius);
+            background: rgba(15,23,42,0.95);
+            border: 1px solid rgba(148,163,184,0.35);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 30% 0, #38bdf8, #2563eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .feature-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .feature-text {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid rgba(148,163,184,0.25);
+            margin-top: 3rem;
+            padding: 1.5rem 1.5rem 2rem;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+        }
+
+        .footer-links a:hover {
+            color: #e5e7eb;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-media {
+                order: -1;
+            }
+
+            .products-grid,
+            .features-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav {
+                flex-wrap: wrap;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            main {
+                padding-inline: 1.1rem;
+            }
+
+            .products-grid,
+            .features-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-card {
+                padding: 1.1rem;
+            }
+
+            .hero-product-main img {
+                height: 190px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="nav">
+        <div class="logo">
+            <div class="logo-icon">
+                <span>EP</span>
+            </div>
+            <div>
+                <div class="logo-text-main">ElektroPro</div>
+                <div class="logo-text-sub">Profesionálna elektrotechnika</div>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="#produkty">Produkty</a>
+            <a href="#sluzby">Služby</a>
+            <a href="#kontakt">Kontakt</a>
+        </div>
+        <div class="nav-cta">
+            <div class="nav-phone">
+                Podpora <strong>+421 900 123 456</strong>
+            </div>
+            <button class="btn btn-primary">Nezáväzná ponuka</button>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section class="hero">
+        <div>
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Overený dodávateľ pre firmy, výrobu aj servis
+            </div>
+            <h1 class="hero-title">
+                Špičková <span>elektrotechnika</span> pre priemysel, IT aj domácnosti.
+            </h1>
+            <p class="hero-subtitle">
+                Navrhujeme, dodávame a skladom držíme profesionálne elektrotechnické komponenty – od ističov a rozvádzačov
+                až po inteligentné meranie a priemyselnú automatizáciu.
+            </p>
+
+            <div class="hero-highlights">
+                <div class="hero-highlight">
+                    <div class="hero-highlight-icon">✓</div>
+                    <span>Certifikované značky a technická dokumentácia v slovenčine</span>
+                </div>
+                <div class="hero-highlight">
+                    <div class="hero-highlight-icon">⚡</div>
+                    <span>Expresné dodanie do 24–48 hodín z nášho skladu</span>
+                </div>
+                <div class="hero-highlight">
+                    <div class="hero-highlight-icon">👷</div>
+                    <span>Technické poradenstvo pre projektantov a montážne firmy</span>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <button class="btn btn-primary">Pozrieť katalóg produktov</button>
+                <button class="btn btn-outline">Kontaktovať obchodníka</button>
+            </div>
+            <p class="hero-note">
+                <span>Firemní zákazníci:</span> individuálne ceny, rámcové zmluvy a skladové rezervácie.
+            </p>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <strong>12 000+</strong>
+                    položiek skladom
+                </div>
+                <div class="hero-stat">
+                    <strong>15 rokov</strong>
+                    skúseností v elektrotechnike
+                </div>
+                <div class="hero-stat">
+                    <strong>98 %</strong>
+                    objednávok odoslaných načas
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-media">
+            <div class="hero-card">
+                <div class="hero-card-header">
+                    <div class="hero-card-title">
+                        Aktuálne skladom
+                        <strong>Priemyselné rozvádzače & meranie</strong>
+                    </div>
+                    <div class="hero-card-badges">
+                        <div class="hero-card-badge">IP65</div>
+                        <div class="hero-card-badge">3-fázové</div>
+                    </div>
+                </div>
+
+                <div class="hero-grid">
+                    <div class="hero-product-main">
+                        <!-- Obrázok rozvádzača – môžeš nahradiť vlastným -->
+                        <img src="https://images.pexels.com/photos/4254168/pexels-photo-4254168.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                             alt="Priemyselný rozvádzač a meranie">
+                        <div class="hero-product-label">
+                            Rozvádzačová zostava <span>ELX-400 Pro</span>
+                        </div>
+                    </div>
+                    <div class="hero-product-side">
+                        <div class="hero-mini-card">
+                            <div class="hero-mini-icon">A</div>
+                            <div>
+                                <div class="hero-mini-text-title">Energetický audit</div>
+                                <div class="hero-mini-text-sub">
+                                    Návrh optimálneho istenia, merania a úspor pre výrobu a prevádzky.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-mini-card">
+                            <div class="hero-mini-icon orange">∞</div>
+                            <div>
+                                <div class="hero-mini-text-title">Modulárne riešenia</div>
+                                <div class="hero-mini-text-sub">
+                                    Rozšíriteľné systémy – od malých rozvádzačov po komplexné rozvodne.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-floating-tag">
+                    Projektové ceny pre väčšie objemy
+                </div>
+            </div>
+            <div class="hero-glow"></div>
+        </div>
+    </section>
+
+    <!-- PRODUKTY -->
+    <section id="produkty" class="section">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Vybrané produktové kategórie</h2>
+                <p class="section-subtitle">
+                    Kompletný sortiment pre elektroinštalácie, priemyselné aplikácie, rozvádzače, meranie a automatizáciu.
+                    Všetky produkty sú od overených výrobcov s plnou zárukou.
+                </p>
+            </div>
+            <a href="#" class="section-link">
+                Zobraziť celý katalóg <span>→</span>
+            </a>
+        </div>
+
+        <div class="products-grid">
+            <!-- Produkt 1 -->
+            <article class="product-card">
+                <div class="product-image">
+                    <!-- Obrázok ističov -->
+                    <img src="https://images.pexels.com/photos/4254167/pexels-photo-4254167.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                         alt="Modulárne ističe a chrániče">
+                </div>
+                <div class="product-category">Istenie & ochrana</div>
+                <div class="product-name">Modulárne ističe a prúdové chrániče</div>
+                <div class="product-meta">
+                    <span>1–125 A, B/C/D charakteristika</span>
+                    <span>CE, EN 60898</span>
+                </div>
+                <div class="product-cta">
+                    <div class="product-price">od 6,90 € <span>bez DPH</span></div>
+                    <button class="btn btn-outline">Detail</button>
+                </div>
+                <div class="product-stock">Skladom &nbsp;•&nbsp; odoslanie do 24 h</div>
+            </article>
+
+            <!-- Produkt 2 -->
+            <article class="product-card">
+                <div class="product-image">
+                    <!-- Obrázok LED osvetlenia -->
+                    <img src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                         alt="Priemyselné LED osvetlenie">
+                </div>
+                <div class="product-category">Osvetlenie</div>
+                <div class="product-name">Priemyselné LED svietidlá & reflektory</div>
+                <div class="product-meta">
+                    <span>IP65–IP67, 4 000–30 000 lm</span>
+                    <span>5 rokov záruka</span>
+                </div>
+                <div class="product-cta">
+                    <div class="product-price">od 39,00 € <span>bez DPH</span></div>
+                    <button class="btn btn-outline">Detail</button>
+                </div>
+                <div class="product-stock">Projektové návrhy osvetlenia na mieru</div>
+            </article>
+
+            <!-- Produkt 3 -->
+            <article class="product-card">
+                <div class="product-image">
+                    <!-- Obrázok rozvádzača / serverovej skrine -->
+                    <img src="https://images.pexels.com/photos/2881229/pexels-photo-2881229.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                         alt="Rozvádzačové skrine a príslušenstvo">
+                </div>
+                <div class="product-category">Rozvádzače & IT</div>
+                <div class="product-name">Rozvádzačové skrine, lišty a príslušenstvo</div>
+                <div class="product-meta">
+                    <span>19" rack, nástenné aj stojanové</span>
+                    <span>IP20–IP66</span>
+                </div>
+                <div class="product-cta">
+                    <div class="product-price">od 89,00 € <span>bez DPH</span></div>
+                    <button class="btn btn-outline">Detail</button>
+                </div>
+                <div class="product-stock">Možnosť kompletnej montáže a kabeláže</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- SLUŽBY / PREČO MY -->
+    <section id="sluzby" class="section">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Viac než len predaj komponentov</h2>
+                <p class="section-subtitle">
+                    Spájame kvalitné produkty s technickým know-how. Pomôžeme ti od návrhu riešenia až po dodanie
+                    a dlhodobý servis.
+                </p>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <article class="feature-card">
+                <div class="feature-icon">📐</div>
+                <h3 class="feature-title">Technické poradenstvo a návrh</h3>
+                <p class="feature-text">
+                    Konzultácie pre projektantov, montážne firmy aj koncových zákazníkov. Pomôžeme s výberom správnych
+                    komponentov, dimenzovaním istenia a návrhom rozvádzačov.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3 class="feature-title">Rýchla logistika a sklad</h3>
+                <p class="feature-text">
+                    Vlastný sklad v Bratislave, pravidelné dodávky po celom Slovensku a možnosť osobného odberu.
+                    Pre firmy vieme držať skladové rezervy.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3 class="feature-title">Partnerský prístup</h3>
+                <p class="feature-text">
+                    Individuálne cenové podmienky, rámcové zmluvy a dlhodobá spolupráca. Sme partner, na ktorého sa
+                    môžeš spoľahnúť pri každom projekte.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="section">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Kontakt a dopyty</h2>
+                <p class="section-subtitle">
+                    Pošli nám zoznam materiálu, projektovú dokumentáciu alebo len stručný popis. Pripravíme ti
+                    cenovú ponuku a odporúčané riešenie.
+                </p>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3 class="feature-title">Obchodné oddelenie</h3>
+                <p class="feature-text">
+                    E‑mail: obchod@elektropro.sk<br>
+                    Telefón: +421 900 123 456<br>
+                    Pracovné dni: 8:00 – 16:30
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3 class="feature-title">Sídlo & sklad</h3>
+                <p class="feature-text">
+                    ElektroPro s.r.o.<br>
+                    Priemyselná 12, 821 09 Bratislava<br>
+                    Osobný odber po dohode s obchodníkom.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3 class="feature-title">Rýchly dopyt</h3>
+                <p class="feature-text">
+                    Pošli nám zoznam materiálu vo formáte PDF, XLS alebo fotku projektu. Ozveme sa ti najneskôr
+                    nasledujúci pracovný deň.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>© <span id="year"></span> ElektroPro s.r.o. – Profesionálna elektrotechnika</div>
+        <div class="footer-links">
+            <a href="#">Obchodné podmienky</a>
+            <a href="#">Ochrana osobných údajov</a>
+            <a href="#kontakt">Kontakt</a>
+        </div>
     </div>
-  </body>
+</footer>
+
+<script>
+    // automatický rok vo footeri
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
 </html>
