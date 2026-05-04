@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Jordan - Bulls | BasketDresy.sk</title>
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #1a1a1d;
+            --light-bg: #f4f4f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: 450px;
+            object-fit: contain;
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-details h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .size-selector {
+            margin-bottom: 2rem;
+        }
+
+        .size-selector label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .size-selector select {
+            padding: 0.6rem 1rem;
+            width: 100%;
+            max-width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e6521a;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: #888;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🏀 BasketDresy.sk</div>
+        <nav>
+            <a href="index.html">Späť na hlavnú</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="product-image">
+            <img src="https://cdn2.basket4ballers.com/90691-thickbox_default/authentic-jersey-michael-jordan-ajy4cp19025-cbured187mjo-l-nba-ajy4cp19025-cbured187mjo.jpg" alt="Michael Jordan - Bulls">
+        </div>
+        <div class="product-details">
+            <a href="index.html#products" class="back-link">← Späť na zoznam dresov</a>
+            <h1>Michael Jordan - Bulls Authentic</h1>
+            <div class="price">249,90 €</div>
+            <div class="description">
+                <p><strong>Detaily produktu:</strong></p>
+                <p>Autentický dres "Greatest of All Time" od legendárneho hráča Chicaga Bulls. Tento zberateľský kúsok sa vyznačuje najvyššou kvalitou materiálov, detailným prešívaním a priedušnosťou.</p>
+                <br>
+                <p>Materiál: 100% polyester, prémiová technológia proti poteniu.</p>
+            </div>
+
+            <div class="size-selector">
+                <label for="size">Vyberte si veľkosť:</label>
+                <select id="size">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+
+            <a href="mailto:objednavky@basketdresy.sk?subject=Objednávka: Michael Jordan - Bulls Authentic" class="btn">Objednať cez e-mail</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 BasketDresy.sk. Všetky práva vyhradené.</p>
+    </footer>
+
+</body>
+</html>

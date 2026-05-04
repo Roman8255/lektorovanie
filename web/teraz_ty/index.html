@@ -1,28 +1,329 @@
+
 <!DOCTYPE html>
 <html lang="sk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moja prva stranka</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Tu je nadpis</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BasketDresy - Skutočné ikony NBA</title>
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #1a1a1d;
+            --accent-color: #4ecca3;
+            --text-color: #333;
+            --light-bg: #f4f4f9;
+        }
 
-      <p>Tu pis text do prveho odseku.</p>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-      <h2>Tu je mensi nadpis</h2>
+        body {
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
 
-      <p>Tu mozu studenti pisat dalsi text alebo skusat vlastne HTML tagy.</p>
+        /* Hlavička */
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-      <a href="#">Tu moze byt odkaz</a>
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
 
-      <ul>
-        <li>Tu je prva polozka</li>
-        <li>Tu je druha polozka</li>
-        <li>Tu je tretia polozka</li>
-      </ul>
-    </div>
-  </body>
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hlavný banner */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1519766304817-4f37bde74a7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #e6521a;
+        }
+
+        /* Sekcia s produktmi */
+        .products {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            background-color: #fff;
+            padding: 1rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            border-top: 1px solid #eee;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            transition: color 0.2s;
+        }
+
+        .card-link:hover h3 {
+            color: var(--primary-color);
+        }
+
+        .card-content .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-content .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Kontaktný formulár */
+        .contact {
+            background-color: white;
+            padding: 4rem 2rem;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            text-align: center;
+        }
+
+        /* Pätka stránky */
+        footer {
+            background-color: var(--secondary-color);
+            color: #888;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🏀 BasketDresy.sk</div>
+        <nav>
+            <a href="index.html">Domov</a>
+            <a href="index.html#products">Dresy</a>
+            <a href="index.html#contact">Kontakt</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Autentické NBA ikony</h1>
+        <p>Prinášame ti dresy, ktoré definovali históriu a súčasnosť basketbalu. Vyber si dres svojej legendy.</p>
+        <a href="#products" class="btn">Pozrieť ponuku</a>
+    </section>
+
+    <section id="products" class="products">
+        <h2>Legendárne dresy skladom</h2>
+        <div class="product-grid">
+            
+            <div class="card">
+                <a href="jordan.html" class="card-link">
+                    <img src="https://cdn2.basket4ballers.com/90691-thickbox_default/authentic-jersey-michael-jordan-ajy4cp19025-cbured187mjo-l-nba-ajy4cp19025-cbured187mjo.jpg" alt="Dres Michael Jordan Bulls">
+                </a>
+                <div class="card-content">
+                    <a href="jordan.html" class="card-link">
+                        <h3>Michael Jordan - Bulls</h3>
+                    </a>
+                    <div class="price">49,90 €</div>
+                    <p>Autentický dres "Greatest of All Time". Klasický červený dizajn Chicaga Bulls z éry najväčšej slávy.</p>
+                    <a href="jordan.html" class="btn">Zobraziť detail</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <a href="lakers.html" class="card-link">
+                    <img src="https://img01.ztat.net/article/spp-media-p1/0e99db31a7f0466792baa19a2d0783cc/a3509f02b0324ba7811c833ac36dd593.jpg?imwidth=1800&filter=packshot" alt="Dres LeBron James Lakers">
+                </a>
+                <div class="card-content">
+                    <a href="lakers.html" class="card-link">
+                        <h3>LeBron James - Lakers</h3>
+                    </a>
+                    <div class="price">59,90 €</div>
+                    <p>Fialový "Statement Edition" dres kráľa Jamesa. Moderný strih pre fanúšikov Los Angeles Lakers.</p>
+                    <a href="lakers.html" class="btn">Zobraziť detail</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <a href="curry.html" class="card-link">
+                    <img src="https://hoopjersey.com/wp-content/uploads/2025/05/IMG-0774.jpg" alt="Dres Stephen Curry Warriors">
+                </a>
+                <div class="card-content">
+                    <a href="curry.html" class="card-link">
+                        <h3>Stephen Curry - Warriors</h3>
+                    </a>
+                    <div class="price">54,90 €</div>
+                    <p>Dres najlepšieho strelca za tri body v histórii. Klasická modro-žltá kombinácia Golden State.</p>
+                    <a href="curry.html" class="btn">Zobraziť detail</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2>Máte otázky o veľkostiach? Napíšte nám</h2>
+            <form action="mailto:info@basketdresy.sk" method="POST" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">Vaše meno:</label>
+                    <input type="text" id="name" name="name" required placeholder="Ján Kováč">
+                </div>
+                <div class="form-group">
+                    <label for="email">Váš e-mail:</label>
+                    <input type="email" id="email" name="email" required placeholder="jan@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Správa / Požiadavka:</label>
+                    <textarea id="message" name="message" required placeholder="Dobrý deň, mal by som záujem o dres..."></textarea>
+                </div>
+                <div class="form-submit">
+                    <button type="submit" class="btn">Odoslať správu</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 BasketDresy.sk. Všetky práva vyhradené.</p>
+    </footer>
+
+</body>
 </html>
