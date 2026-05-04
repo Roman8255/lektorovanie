@@ -1,28 +1,149 @@
 <!DOCTYPE html>
 <html lang="sk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moja prva stranka</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Tu je nadpis</h1>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Svet Zdravia</title>
 
-      <p>Tu pis text do prveho odseku.</p>
+<style>
+body{margin:0;font-family:Arial;background:#f4f7f5}
+header{background:#fff;padding:15px 30px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.logo{font-weight:bold;color:#2e7d32;font-size:20px}
 
-      <h2>Tu je mensi nadpis</h2>
+nav{display:flex;gap:10px;flex-wrap:wrap}
+nav div{cursor:pointer;background:#fff;padding:8px 12px;border-radius:15px;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+nav div:hover{background:#2e7d32;color:#fff}
 
-      <p>Tu mozu studenti pisat dalsi text alebo skusat vlastne HTML tagy.</p>
+.hero{text-align:center;padding:60px 20px;background:linear-gradient(135deg,#a5d6a7,#66bb6a);color:#fff}
+.hero h1{font-size:40px}
+.hero button{padding:10px 20px;border:none;border-radius:20px;cursor:pointer}
 
-      <a href="#">Tu moze byt odkaz</a>
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;padding:20px}
+.card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.card img{width:100%;height:140px;object-fit:cover}
+.card div{padding:10px;text-align:center}
+.price{color:#2e7d32;font-weight:bold}
 
-      <ul>
-        <li>Tu je prva polozka</li>
-        <li>Tu je druha polozka</li>
-        <li>Tu je tretia polozka</li>
-      </ul>
-    </div>
-  </body>
+footer{text-align:center;padding:20px;background:#2e7d32;color:#fff}
+
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center}
+.modal-box{background:#fff;padding:20px;border-radius:10px;width:300px;text-align:center}
+.modal-box button{margin-top:10px;padding:8px 15px;background:#2e7d32;color:#fff;border:none;border-radius:10px;cursor:pointer}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Svet Zdravia</div>
+
+<nav>
+<div onclick="filter('all')">Všetko</div>
+<div onclick="filter('orechy')">Orechy</div>
+<div onclick="filter('maso')">Mäso náhrady</div>
+<div onclick="filter('ovocie')">Ovocie</div>
+<div onclick="filter('pochutiny')">Pochutiny</div>
+<div onclick="filter('zele')">Želé</div>
+<div onclick="openModal('contacts')">Kontakty</div>
+<div onclick="openModal('benefits')">Výhody</div>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Zdravé jedlo pre každý deň</h1>
+<p>Orechy, ovocie, vegánske produkty</p>
+<button onclick="filter('all')">Nakupovať</button>
+</section>
+
+<section class="products" id="products"></section>
+
+<footer>
+© 2026 Svet Zdravia | support@svet-zdravia.sk
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box" id="modalBox"></div>
+</div>
+
+<script>
+const data={
+orechy:["Mandle","Kešu","Vlašské orechy","Pistácie","Mix orechov"],
+maso:["Tofu","Tempeh","Vegán burger","Seitan","Vegán klobása"],
+ovocie:["Mango","Banány","Datle","Marhule","Jablká"],
+pochutiny:["Protein tyčinka","Raw tyčinka","Ovocné chipsy","Snack mix","Energy bar"],
+zele:["Želé cola","Želé jahoda","Želé mix","Želé ovocné","Želé bio"]
+};
+
+let products=[];
+
+for(let c in data){
+data[c].forEach(n=>{
+products.push({
+name:n,
+cat:c,
+price:(Math.random()*5+2).toFixed(2)+"€",
+img:"https://source.unsplash.com/300x200/?food"
+});
+});
+}
+
+function render(f="all"){
+let box=document.getElementById("products");
+box.innerHTML="";
+products.forEach(p=>{
+if(f==="all"||p.cat===f){
+box.innerHTML+=`
+<div class="card">
+<img src="${p.img}">
+<div>
+<h3>${p.name}</h3>
+<p class="price">${p.price}</p>
+</div>
+</div>`;
+}
+});
+}
+render();
+
+function filter(c){render(c);}
+
+function openModal(type){
+let m=document.getElementById("modal");
+let b=document.getElementById("modalBox");
+
+if(type==="contacts"){
+b.innerHTML=`<h3>Kontakty</h3>
+<p>support@svetzdravia.sk</p>
+<p>info@svetzdravia.sk</p>
+<button onclick="closeModal()">Zavrieť</button>`;
+}
+
+if(type==="benefits"){
+b.innerHTML=`<h3>Výhody</h3>
+<p>✔ Kvalitné produkty</p>
+<p>✔ Rýchle doručenie</p>
+<p>✔ Dobré ceny</p>
+<button onclick="closeModal()">Zavrieť</button>`;
+}
+
+m.style.display="flex";
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+window.onclick=e=>{
+if(e.target.classList.contains("modal")) closeModal();
+}
+</script>
+
+</body>
 </html>
+
+
+
+
+
+
