@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Cykly v Pythone – úvodné úlohy a projekt Smart bankomat."
+    />
+    <title>Cykly v Pythone</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Hlavná navigácia">
+      <a class="site-nav-brand" href="index.html">Cykly v Pythone jednoducho</a>
+      <div class="site-nav-links">
+        <a href="index.html">Domov</a>
+        <a href="sites.html">Študentské stránky</a>
+        <a href="zadania.html">Zadania</a>
+        <a href="python-cykly.html" aria-current="page">Cykly v Pythone</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">Python</p>
+      <h1>Cykly v Pythone</h1>
+      <p class="lead">
+        Toto budú prvé úlohy na začiatok hodiny. Najprv si precvičíte cykly na
+        krátkych zadaniach (89 – 100), potom budete robiť projekt Simulátor
+        „Smart“ bankomatu, ktorý na konci aj odprezentujete.
+      </p>
+
+      <nav class="quick-nav" aria-label="Obsah hodiny">
+        <a href="#start">Začiatok hodiny</a>
+        <a href="#ulohy">Úlohy 89 – 100</a>
+        <a href="#vyzvy">Bonus výzvy</a>
+        <a href="#projekt">Projekt Smart bankomat</a>
+        <a href="#prezentacia">Prezentácia na konci</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="card accent" id="start">
+        <div class="section-heading">
+          <p class="section-index">01</p>
+          <div>
+            <h2>Rozbeh hodiny: krátke cykly</h2>
+            <p>
+              Cieľ je rozcvičiť sa na <code>for</code> a <code>while</code>
+              cykloch, práci s intervalmi, párnosťou/nepárnosťou a spracovaním
+              vstupov z klávesnice.
+            </p>
+          </div>
+        </div>
+
+        <div class="preview-box">
+          <strong>Tempo hodiny</strong>
+          <p>
+            Najprv úlohy 89 – 100, potom hlavný projekt. Počas práce si priebežne
+            testujte vstupy a hraničné prípady.
+          </p>
+        </div>
+      </section>
+
+      <section class="card" id="ulohy">
+        <div class="section-heading">
+          <p class="section-index">02</p>
+          <div>
+            <h2>Úlohy 89 – 100: Cykly</h2>
+            <p>
+              Každú úlohu riešte ako samostatný program. Dodržujte presný výstup
+              podľa zadania.
+            </p>
+          </div>
+        </div>
+
+        <div class="showcase-grid">
+          <article>
+            <p class="assignment-badge badge-easy">89. Pozdrav_1</p>
+            <p>Vytvorte program, ktorý 10x pod seba vypíše slovo „Ahoj“.</p>
+          </article>
+
+          <article>
+            <p class="assignment-badge badge-easy">90. Slovo_2</p>
+            <p>Vytvorte program, ktorý Nx pod seba vypíše ľubovoľné slovo.</p>
+          </article>
+
+          <article>
+            <p class="assignment-badge badge-easy">91. Od_1_do_10</p>
+            <p>Vytvorte program, ktorý vypíše všetky celé čísla od 1 do 10.</p>
+          </article>
+
+          <article>
+            <p class="assignment-badge badge-easy">92. Od_a_do_b</p>
+            <p>
+              Vytvorte program, ktorý vypíše všetky celé čísla od <code>a</code>
+              do <code>b</code>.
+            </p>
+          </article>
+
+          <article>
+            <p class="assignment-badge badge-easy">93. Parne_4</p>
+            <p>
+              Vytvorte program, ktorý vypíše všetky párne čísla z intervalu
+              <code>&lt;a,b&gt;</code>. Predpokladáme, že hranice intervalu
+              <code>a</code>, <code>b</code> sú tiež párne.
+            </p>
+          </article>
+
+          <article>
+            <p class="assignment-badge badge-easy">94. Neparne_1</p>
+            <p>
+              Vytvorte program, ktorý vypíše všetky nepárne čísla z intervalu
+              <code>&lt;a,b&gt;</code>. Predpokladáme, že hranice intervalu
+              <code>a</code>, <code>b</code> sú tiež nepárne.
+            </p>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-medium">95. Parne_5 *</p>
+            <p>
+              Vytvorte program, ktorý vypíše všetky párne čísla z intervalu
+              <code>&lt;a,b&gt;</code>. Hranice intervalu sú ľubovoľné celé čísla.
+            </p>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-medium">96. Neparne_2 *</p>
+            <p>
+              Vytvorte program, ktorý vypíše všetky nepárne čísla z intervalu
+              <code>&lt;a,b&gt;</code>. Hranice intervalu sú ľubovoľné celé čísla.
+            </p>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-medium">97. Sucet_2</p>
+            <p>
+              Vytvorte program, ktorý spočíta <code>N</code> čísel zadaných z
+              klávesnice.
+            </p>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-medium">98. Sucet_parne</p>
+            <p>
+              Z klávesnice bude postupne zadaných <code>N</code> celočíselných
+              hodnôt. Vytvorte program, ktorý spočíta všetky párne zadané čísla.
+            </p>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-medium">99. Suc_poc_neparne</p>
+            <p>
+              Z klávesnice bude postupne zadaných <code>N</code> celočíselných
+              hodnôt. Vytvorte program, ktorý spočíta všetky nepárne zadané čísla
+              a vypíše aj ich počet.
+            </p>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-medium">100. Najvacsie_2</p>
+            <p>
+              Z klávesnice bude zadaných <code>N</code> celých čísel. Vytvorte
+              program, ktorý vypíše najväčšie zo zadaných čísel.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card accent" id="vyzvy">
+        <div class="section-heading">
+          <p class="section-index">03</p>
+          <div>
+            <h2>Bonus výzvy pre skúsených</h2>
+            <p>
+              Tieto úlohy sú náročnejšie a preveria prácu s cyklami aj logiku.
+            </p>
+          </div>
+        </div>
+
+        <div class="showcase-grid">
+          <article class="challenge-block">
+            <p class="assignment-badge badge-hard">101. Habit_tracker</p>
+            <p>
+              Vytvorte mini tracker návykov: používateľ zadá počet dní a pre každý
+              deň uloží, či splnil návyk (áno/nie). Na konci vypíšte počet splnení
+              a percento úspešnosti.
+            </p>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-hard">102. Kviz_trening</p>
+            <p>
+              Vytvorte jednoduchý kvíz: používateľ zadá počet otázok, pre každú
+              otázku odpoveď (správne/nesprávne). Na konci vypíšte počet správnych,
+              úspešnosť a krátke zhrnutie.
+            </p>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-hard">103. Mini_objednavky</p>
+            <p>
+              Simulujte jednoduché objednávky: používateľ zadá počet položiek a k
+              každej cenu. Program vypíše celkovú sumu, najdrahšiu položku a
+              priemer.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card accent" id="projekt">
+        <div class="section-heading">
+          <p class="section-index">04</p>
+          <div>
+            <h2>Projekt: Simulátor „Smart“ bankomatu</h2>
+            <p>
+              Toto je klasika, ktorá preverí vnorené <code>if</code> podmienky a
+              <code>while</code> cyklus na udržanie aplikácie pri živote.
+            </p>
+          </div>
+        </div>
+
+        <div class="example-grid">
+          <article>
+            <h3>Zadanie</h3>
+            <ul class="feature-list feature-list-strong">
+              <li>Používateľ má počiatočný zostatok na účte.</li>
+              <li>
+                Musí zadať PIN (má 3 pokusy – tu využijete
+                <code>while</code> cyklus).
+              </li>
+            </ul>
+          </article>
+
+          <article>
+            <h3>Funkcie aplikácie</h3>
+            <ul class="feature-list feature-list-strong">
+              <li>
+                <strong>Výber peňazí</strong> – kontrola, či je na účte dosť
+                prostriedkov.
+              </li>
+              <li><strong>Vklad</strong> peňazí na účet.</li>
+              <li><strong>Zmena PINu</strong>.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3>Na čo si dať pozor</h3>
+            <ul class="feature-list feature-list-strong">
+              <li>Ošetrite zápornú sumu pri výbere aj vklade.</li>
+              <li>Ošetrite nesprávny PIN a počet pokusov.</li>
+              <li>Program má byť stabilný a čitateľný (nie chaos podmienok).</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" id="prezentacia">
+        <div class="section-heading">
+          <p class="section-index">05</p>
+          <div>
+            <h2>Odprezentovanie na konci</h2>
+            <p>
+              Projekt budete prezentovať na konci hodiny. Ukážte funkčný flow a
+              vysvetlite logiku riešenia.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-grid">
+          <article class="timeline-step">
+            <p class="assignment-badge">Demo</p>
+            <p>
+              Predveďte prihlásenie PINom, výber, vklad a zmenu PINu v jednej
+              ukážke.
+            </p>
+          </article>
+
+          <article class="timeline-step">
+            <p class="assignment-badge">Hraničné prípady</p>
+            <p>
+              Ukážte, že riešenie zvláda nesprávny PIN a záporné/nesprávne vstupy.
+            </p>
+          </article>
+
+          <article class="timeline-step">
+            <p class="assignment-badge">Vysvetlenie</p>
+            <p>
+              Stručne popíšte, kde používate <code>while</code>, kde
+              podmienky <code>if</code> a ako strážite stav účtu.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
