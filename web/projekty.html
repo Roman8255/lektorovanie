@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="10 projektov v Pythone – od základov až po šifrovanie."
+    />
+    <title>Projekty v Pythone</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Hlavná navigácia">
+      <a class="site-nav-brand" href="index.html">Cykly v Pythone jednoducho</a>
+      <div class="site-nav-links">
+        <a href="index.html">Domov</a>
+        <a href="sites.html">Študentské stránky</a>
+        <a href="zadania.html">Zadania</a>
+        <a href="python-cykly.html">Cykly v Pythone</a>
+        <a href="projekty.html" aria-current="page">Projekty</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">Python • 10 projektov</p>
+      <h1>Projekty</h1>
+      <p class="lead">
+        10 praktických projektov rozdelených do štyroch úrovní – od úplných
+        základov až po bezpečnosť a šifrovanie. Každý projekt ťa postaví pred
+        reálnu situáciu, ktorú musíš vyriešiť pomocou Pythonu.
+      </p>
+
+      <nav class="quick-nav" aria-label="Obsah projektov">
+        <a href="#uroven1">🟢 Úroveň 1: Základy</a>
+        <a href="#uroven2">🟡 Úroveň 2: Cykly a dáta</a>
+        <a href="#uroven3">🟠 Úroveň 3: Algoritmy</a>
+        <a href="#uroven4">🔴 Úroveň 4: Expert</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="card" id="uroven1">
+        <div class="section-heading">
+          <p class="section-index">🟢 01</p>
+          <div>
+            <h2>Úroveň 1: Základy (Premenné a podmienky)</h2>
+            <p>
+              Dva projekty na rozohriatie. Precvičíš si prácu s premennými,
+              vstupmi od používateľa a vetvenie programu pomocou
+              <code>if</code>/<code>else</code> podmienok.
+            </p>
+          </div>
+        </div>
+
+        <div class="example-grid">
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level1">1. Monitorovanie modulu (Module Monitor)</p>
+            <p>
+              Tvoj program bude simulovať systém kontroly prostredia v module.
+              Používateľ zadá tri hodnoty – hladinu kyslíka (%), hladinu CO₂ (%)
+              a teplotu (°C). Program musí vyhodnotiť celkový stav modulu
+              a vypísať všetky alarmy, ktoré treba riešiť.
+            </p>
+            <ul class="feature-list">
+              <li>O₂ pod 19 % → <strong>kritický alarm</strong> – kyslík príliš nízky</li>
+              <li>O₂ nad 25 % → výstraha – riziko požiaru</li>
+              <li>CO₂ nad 1 % → <strong>alarm</strong> – vysoká koncentrácia CO₂, vetrať!</li>
+              <li>Teplota pod 18 °C → kúrenie zapnuté</li>
+              <li>Teplota nad 30 °C → chladenie zapnuté</li>
+              <li>Na konci vypísať celkový stav: <strong>Bezpečný / Varovanie / Kritický</strong></li>
+            </ul>
+            <p>
+              Celkový stav je Kritický, ak je aspoň jeden alarm kritický.
+              Varovanie, ak je aspoň jedna výstraha. Inak je Bezpečný.
+            </p>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Pridaj aj tlak v module (v kPa). Norma je 95–105 kPa.
+              Mimo tohto rozsahu → alarm "Nestabilný tlak – hrozí dekompresia!".
+            </div>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level1">2. Manažér vodných zásob (Water Reservoir Manager)</p>
+            <p>
+              Na základni máš tri nádrže na vodu: pitnú (500 l), úžitkovú (300 l)
+              a recyklovanú (200 l). Používateľ si môže vybrať nádrž a odobrať
+              vodu. Program musí v cykle ponúkať menu, overovať kapacitu každej
+              nádrže a viesť si históriu odberov.
+            </p>
+            <ul class="feature-list">
+              <li><strong>1. Zobraziť stav nádrží</strong> – vypíše všetky tri nádrže a ich aktuálne množstvo</li>
+              <li><strong>2. Odobrať vodu</strong> – používateľ vyberie nádrž a množstvo, program overí kapacitu</li>
+              <li><strong>3. Dopiš vodu</strong> – používateľ pridá vodu do vybranej nádrže</li>
+              <li><strong>4. História odberov</strong> – zobrazí zoznam všetkých doterajších odberov</li>
+              <li><strong>5. Koniec</strong> – ukončenie programu</li>
+            </ul>
+            <p>
+              Ak je v nádrži menej ako 20 % kapacity, program automaticky vypíše
+              varovanie. Ak klesne na 0, ďalší odber z nej nie je možný.
+            </p>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Pridaj predikciu – ak je priemerný denný odber z nádrže
+              vyšší ako 50 l, program vypíše varovanie, o koľko dní voda dôjde.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card accent" id="uroven2">
+        <div class="section-heading">
+          <p class="section-index">🟡 02</p>
+          <div>
+            <h2>Úroveň 2: Cykly a práca s dátami</h2>
+            <p>
+              Tri projekty zamerané na cykly (<code>for</code>/<code>while</code>),
+              prácu so zoznamami, slovníky a reťazcami.
+            </p>
+          </div>
+        </div>
+
+        <div class="showcase-grid">
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level2">3. Správca zásob jedla (Food Manager)</p>
+            <p>
+              V sklade základne máš niekoľko položiek jedla (napr. "Proteínový
+              prášok", "Dehydrovaná zmrzlina", "Riasy"). Tvoj program bude
+              interaktívny manažér, ktorý beží v cykle a ponúka menu:
+            </p>
+            <ul class="feature-list">
+              <li><strong>1. Zobraziť zásoby</strong> – vypíše všetky položky v sklade</li>
+              <li><strong>2. Pridať položku</strong> – používateľ pridá novú vec do zoznamu</li>
+              <li><strong>3. Odobrať položku</strong> – používateľ vyberie, čo sa minulo</li>
+            </ul>
+            <p>
+              Program beží, kým používateľ nezvolí možnosť "Koniec".
+            </p>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Namiesto jednoduchého zoznamu použ slovník (dictionary),
+              kde ku každej položke eviduješ aj počet kusov. Stráž, aby počet nikdy
+              neklesol pod 0.
+            </div>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level2">4. Simulácia dňa na základni (Base Day Simulator)</p>
+            <p>
+              Program simuluje celý deň na základni – 24 hodín. Každú hodinu
+              sa mení nielen osvetlenie, ale aj teplota a aktivita posádky.
+              Program musí pre každú hodinu vypočítať a vypísať viacero
+              hodnôt a na konci dňa zobraziť kompletný sumár.
+            </p>
+            <ul class="feature-list">
+              <li>Každú hodinu vypísať <strong>čas</strong>, <strong>teplotu</strong>, <strong>osvetlenie</strong> a <strong>stav modulov</strong></li>
+              <li>Teplota cez deň stúpa (max 26 °C o 14:00), v noci klesá (min 10 °C o 4:00)</li>
+              <li>06:00–20:00 → svetlá zapnuté, moduly aktívne</li>
+              <li>20:00–06:00 → úsporný režim, iba nevyhnutné moduly</li>
+              <li>Každú hodinu náhodne vygenerovať <strong>spotrebu energie</strong> (podľa dennej/nočnej sadzby)</li>
+            </ul>
+            <p>
+              Na konci dňa program zobrazí sumár: priemerná teplota, celková
+              spotreba energie, hodina s najvyššou spotrebou a úspora počas
+              nočného režimu.
+            </p>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Pridaj náhodné udalosti – počas dňa môže nastať
+              porucha (s 10 % šancou každú hodinu). Ak nastane, spotreba stúpne o 50 %
+              a program vypíše "⚠️ Porucha – aktivovaný záložný okruh!".
+            </div>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level2">5. Prístupový systém základne (Base Access Control)</p>
+            <p>
+              Každý člen posádky má svoje ID, meno a prístupovú úroveň
+              (1 – bežný člen, 2 – technik, 3 – veliteľ). Program musí
+              spravovať databázu posádky a overovať prístup do rôznych zón
+              základne. Všetky pokusy o prístup sa logujú do zoznamu.
+            </p>
+            <ul class="feature-list">
+              <li><strong>1. Registrovať člena</strong> – zadať meno, vygenerovať ID (MARS-XXXX), zvoliť úroveň</li>
+              <li><strong>2. Overiť prístup</strong> – zadať ID a cieľovú zónu, program overí, či má dostatočnú úroveň</li>
+              <li><strong>3. Zobraziť posádku</strong> – vypíše všetkých registrovaných členov</li>
+              <li><strong>4. História prístupov</strong> – vypíše všetky pokusy s výsledkom</li>
+            </ul>
+            <p>
+              Zóny a ich minimálna úroveň: <strong>ubytovanie</strong> (1),
+              <strong>sklad</strong> (1), <strong>kontrolná miestnosť</strong> (2),
+              <strong>serverovňa</strong> (2), <strong>veliteľstvo</strong> (3).
+              Ak úroveň nestačí, prístup je zamietnutý.
+            </p>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Pri registrácii over, že ID je unikátne (neexistuje už v databáze).
+              A po 3 zamietnutých prístupoch za sebou vypíš varovanie o bezpečnostnom incidente.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" id="uroven3">
+        <div class="section-heading">
+          <p class="section-index">🟠 03</p>
+          <div>
+            <h2>Úroveň 3: Algoritmy a funkcie</h2>
+            <p>
+              Tri projekty, ktoré ťa naučia písať vlastné funkcie, pracovať so
+              súradnicami, kombinovať podmienky a spracovávať zoznamy dát.
+            </p>
+          </div>
+        </div>
+
+        <div class="showcase-grid">
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level3">6. Ovládanie prieskumného vozidla (Rover Driver)</p>
+            <p>
+              Prieskumné vozidlo (rover) začína na súradniciach [0, 0]. Pomocou
+              príkazov ho môžeš posielať na štyri svetové strany. Každý pohyb
+              zmení jeho polohu. Tvojou úlohou je napísať funkciu
+              <code>pohni_rover(smer)</code>, ktorá aktualizuje súradnice
+              a vypíše aktuálnu polohu.
+            </p>
+            <ul class="feature-list">
+              <li><strong>vpred</strong> → Y + 1</li>
+              <li><strong>vzad</strong> → Y − 1</li>
+              <li><strong>vlavo</strong> → X − 1</li>
+              <li><strong>vpravo</strong> → X + 1</li>
+            </ul>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Pridaj nebezpečnú zónu – kráter na súradniciach
+              [5, 5]. Ak rover vstúpi do krátera, program ohlási haváriu a skončí.
+            </div>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level3">7. Lekárska diagnostika (Bio-Analyzer)</p>
+            <p>
+              Astronaut absolvoval pravidelnú lekársku kontrolu. Tvoja funkcia
+              dostane tri hodnoty – tep, krvný tlak a telesnú teplotu – a na
+              základe nich rozhodne o stave astronauta. Použi kombináciu
+              podmienok (<code>if</code> + <code>and</code> / <code>or</code>).
+            </p>
+            <ul class="feature-list">
+              <li>Teplota &gt; 38 °C a zároveň tep &gt; 100 → <strong>horúčka a stres</strong></li>
+              <li>Tlak &lt; 90 → <strong>nízky tlak</strong> – treba infúziu</li>
+              <li>Inak → vitálne funkcie v poriadku</li>
+            </ul>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Každé meranie ulož do zoznamu. Po piatich meraniach
+              vypočítaj priemerný tep astronauta a vyhodnoť, či je v norme.
+            </div>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level3">8. Energetický manažér (Power Grid)</p>
+            <p>
+              Základňa je napájaná solárnymi panelmi. Máš dva zoznamy – výrobu
+              energie a spotrebu – každý s 24 hodnotami (jedna za každú hodinu
+              dňa). Program musí pre každú hodinu porovnať, či je dosť energie.
+              Ak spotreba prevyšuje výrobu, treba odstaviť nepodstatné moduly.
+            </p>
+            <ul class="feature-list">
+              <li>Porovnať <code>vyroba_solary[i]</code> a <code>spotreba_zakladne[i]</code></li>
+              <li>Ak je spotreba vyššia, vypísať, ktorý modul sa vypína</li>
+              <li>Na konci zobraziť prehľad, koľkokrát hrozil blackout</li>
+            </ul>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Pridaj batériu. Prebytky z dňa sa do nej ukladajú
+              a v noci sa čerpajú naspäť. Batéria má limit 100 jednotiek.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card accent" id="uroven4">
+        <div class="section-heading">
+          <p class="section-index">🔴 04</p>
+          <div>
+            <h2>Úroveň 4: Expert (Bezpečnosť a šifrovanie)</h2>
+            <p>
+              Dva náročné projekty pre najskúsenejších – manipulácia s reťazcami,
+              práca so súbormi, hashovanie a ochrana proti útokom.
+            </p>
+          </div>
+        </div>
+
+        <div class="showcase-grid">
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level4">9. Generátor a ochrana hesiel (Password Guardian)</p>
+            <p>
+              Každý člen posádky potrebuje silné heslo na prístup k systémom.
+              Tvoj program najprv overí silu hesla, ktoré používateľ zadá –
+              skontroluje dĺžku, veľké a malé písmená, číslice a špeciálne znaky.
+              Potom heslo zašifruje jednoduchou šifrou – každé písmeno posunie
+              o pevný počet miest v abecede (Caesarova šifra).
+            </p>
+            <ul class="feature-list">
+              <li>Zadaj heslo → program vyhodnotí jeho <strong>sílu</strong> (slabé/stredné/silné)</li>
+              <li>Následne heslo <strong>zašifruje</strong> – každý znak posunie o 3 miesta (A → D, B → E, …)</li>
+              <li>Vypíše pôvodné heslo, jeho silu a zašifrovanú verziu</li>
+            </ul>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Pridaj možnosť zadať vlastný posun (nielen 3). A napíš
+              aj <strong>dešifrovač</strong>, ktorý zo zašifrovaného hesla a posunu vráti
+              pôvodnú podobu.
+            </div>
+          </article>
+
+          <article class="challenge-block">
+            <p class="assignment-badge badge-level4">10. Prístup k jadru reaktora (The Core Vault)</p>
+            <p>
+              <strong>Najťažšia úloha.</strong> Implementuj bezpečnostný systém
+              pre vstup do miestnosti s jadrom reaktora. Používateľ zadá meno
+              a heslo. Heslo sa nesmie ukladať v čitateľnej podobe – vytvor
+              simuláciu hashu (napr. obráť text a pripočítaj jeho dĺžku).
+            </p>
+            <ul class="feature-list">
+              <li>Prihlásenie cez meno + heslo (hashovaná kontrola)</li>
+              <li>Každý pokus (úspešný aj neúspešný) zalogovať do súboru <code>security.log</code> s časovou pečiatkou</li>
+              <li>Log musí obsahovať dátum, čas, meno používateľa a výsledok</li>
+            </ul>
+            <div class="preview-box">
+              <strong>Bonus:</strong> Po troch neúspešných pokusoch za sebou program
+              uzamkne terminál na 30 sekúnd (<code>time.sleep</code>) a vypíše
+              varovanie. Po odomknutí sa pokusy vynulujú.
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
